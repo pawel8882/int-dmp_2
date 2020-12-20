@@ -1,1 +1,14 @@
-/* You can add global styles to this file, and also import other style files */
+/* Application-wide Styles */
+
+@import 'primeng/resources/themes/bootstrap4-dark-blue/theme.css';
+
+:root {
+  background-color: #2a323d;
+  font: 15px Cambria;
+  color: rgb(240, 247, 255);
+}
+
+/* everywhere else */
+* {
+
+}/* You can add global styles to this file, and also import other style files */

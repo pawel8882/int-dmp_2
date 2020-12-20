@@ -1,0 +1,66 @@
+.projekty {
+  margin: 0 0 2em 0;
+  list-style-type: none;
+  padding: 0;
+  width: 25em;
+}
+
+.lista_lewa {
+  float: left;
+}
+
+.projekt_detale {
+  float: left;
+  background-color: #c299ff;
+  padding: 15px;
+}
+
+.clear {
+
+    clear: both;
+
+}
+
+.projekty li {
+  position: relative;
+  left: 0;
+  background-color: #EEE;
+  margin: .5em;
+  padding: .3em 0;
+  height: 1.6em;
+  border-radius: 4px;
+  color: black;
+}
+
+.projekty li:hover {
+  color: #607D8B;
+  background-color: #DDD;
+  left: .1em;
+}
+
+.button {
+  color: white;
+  text-align: end;
+  text-decoration: wavy;
+  font-size: 10px;
+  position: sticky;
+  padding: 5px 10px;
+  background-color: gray;
+  float: right;
+  border: 1px solid blue;
+}
+
+.button1 {
+  background-color: black;
+  text-align: start;
+  font-size: 10px;
+  padding: 15px 22px;
+  color: white;
+  transition-duration: 0.5s;
+  border: none;
+  cursor: pointer;
+}
+.button1:hover {
+  background-color: goldenrod;
+  color: white;
+}

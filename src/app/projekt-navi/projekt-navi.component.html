@@ -1,0 +1,18 @@
+<p-toolbar>
+  <div class="p-toolbar-group-left">
+    <div class="p-text-bold">DANE PROJEKTU - NUMER PROJEKTU</div>
+  </div>
+  <div class="p-toolbar-group-right">
+
+
+   <button *ngFor="let branza of lista_alfabetycznie" pButton pRipple type="button" label={{branza.name}} class="p-button-text"></button>
+
+
+
+    <button pButton pRipple type="button" icon={{ikonka}} class="p-button-text" (click)="add_branza = !add_branza;ikonka_change()"></button>
+    <div *ngIf="add_branza">
+      <input type="text" pInputText />
+      <button label="Dodaj" pButton type="button" icon="pi pi-check" iconPos="left" class="size" (click)="add_branza = !add_branza;ikonka_change()"></button>
+    </div>
+  </div>
+</p-toolbar>
