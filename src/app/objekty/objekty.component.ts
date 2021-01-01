@@ -49,16 +49,16 @@ export class ObjektyComponent implements OnInit {
     sub.subscribe(
       { next: (projekt => this.oneprojekt = projekt as Projekt) });
     sub.subscribe(
-      { next: (projekt => this.oneprojekt_detail = (projekt as Projekt).projektDetails.find(detal => detal.projektID === id) as ProjektDetails)});
+      { next: (projekt => this.oneprojekt_detail = (projekt as Projekt).details[0] as ProjektDetails)});
 
     this.projektservice.getProjekt(id).subscribe(sub);
   }
 
-  add(name: string, numer: string): void {
+  add(name: string, number: string): void {
     if (!name) { return; }
-    if (!numer) { return; }
-    const isComplete = false;
-    this.projektservice.addProjekt({ name, numer, isComplete } as Projekt)
+    if (!number) { return; }
+    const complete = false;
+    this.projektservice.addProjekt({ name, number, complete } as Projekt)
       .subscribe(_projekt => {
         this.showProjekt();
       })

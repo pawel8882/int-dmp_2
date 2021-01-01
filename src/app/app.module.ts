@@ -16,6 +16,10 @@ import { SlideMenuModule } from 'primeng/slidemenu';
 import { InputTextModule } from 'primeng/inputtext';
 import { MatListModule } from '@angular/material/list';
 
+import { PanelMenuModule } from 'primeng/panelmenu';
+import { PanelModule } from 'primeng/panel';
+
+
 
 
 @NgModule({
@@ -35,7 +39,9 @@ import { MatListModule } from '@angular/material/list';
     ToolbarModule,
     SlideMenuModule,
     InputTextModule,
-    MatListModule
+    MatListModule,
+    PanelMenuModule,
+    PanelModule
   ],
   providers: [],
   bootstrap: [AppComponent]

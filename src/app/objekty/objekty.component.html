@@ -4,11 +4,11 @@
 <div class="lista_lewa">
   <ul class="projekty">
     <li *ngFor="let projekt of projekty">
-      {{projekt.name}} <span> - </span> {{projekt.numer}} <span>
+      {{projekt.name}} <span> - </span> {{projekt.number}} <span>
         <button class="button" (click)="delete_projekt(projekt.name)">
           Usuń
         </button>
-        <button class="button" (click)="showDialog(); getOneProjekt(projekt.projektID)">
+        <button class="button" (click)="showDialog(); getOneProjekt(projekt.id)">
           Szczegóły
         </button>
       </span>
@@ -34,7 +34,7 @@
 </div>
 
 <p-dialog header="Opis projektu" [(visible)]="display" [style]="{width: '50vw'}">
-  {{oneprojekt_detail.opis}}
+  {{oneprojekt_detail.description}}
 </p-dialog>
 
 

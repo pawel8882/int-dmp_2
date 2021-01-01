@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { Projekt } from './projekt';
+import { department } from './projekt-navi/department';
 
 
 @Injectable({
@@ -14,7 +15,7 @@ export class ProjektyService {
   log: any;
 
   constructor(private http: HttpClient) { }
-  url = 'http://localhost:4200/api/Projekts';
+  url = 'http://localhost:4200/api/projects';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -29,6 +30,16 @@ export class ProjektyService {
 
   }
 
+  getDepartments(id: number): Observable<department[]> {
+
+    const url = `${this.url}/${id}/departments`;
+    return this.http.get<department[]>(url)
+      .pipe(
+        tap(_ => console.log('Pobrano dane')),
+        catchError(this.handleError<department[]>('getProjekty', [])));
+
+  }
+
   getProjekt(id: number): Observable<Projekt> {
 
     const url = `${this.url}/${id}`;
@@ -40,22 +51,22 @@ export class ProjektyService {
   }
 
   updateProjekt(projekt: Projekt): Observable<any> {
-    const id = projekt.projektID;
+    const id = projekt.id;
     const url = `${this.url}/${id}`;
     return this.http.put(url, projekt, this.httpOptions).pipe(
-      tap(_ => console.log(`updated Projekt id=${projekt.projektID}`)),
+      tap(_ => console.log(`updated Projekt id=${projekt.id}`)),
       catchError(this.handleError<any>('updateProjekt')))
   }
 
   addProjekt(projekt: Projekt): Observable<Projekt> {
     return this.http.post<Projekt>(this.url, projekt, this.httpOptions).pipe(
-      tap((newProjekt: Projekt) => console.log(`added projekt w/ id=${newProjekt.projektID}`)),
+      tap((newProjekt: Projekt) => console.log(`added projekt w/ id=${newProjekt.id}`)),
       catchError(this.handleError<Projekt>('addProjekt'))
     );
   }
 
   deleteProjekt(projekt: Projekt): Observable<Projekt> {
-    const id = typeof projekt === 'number' ? projekt : projekt.projektID;
+    const id = typeof projekt === 'number' ? projekt : projekt.id;
     const url = `${this.url}/${id}`;
 
     return this.http.delete<Projekt>(url, this.httpOptions).pipe(

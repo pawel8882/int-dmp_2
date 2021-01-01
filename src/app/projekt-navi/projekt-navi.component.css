@@ -4,3 +4,44 @@
     height: 35px;
 
 }
+
+
+:host ::ng-deep .p-panelmenu .p-panelmenu-header > a .p-panelmenu-icon {
+  margin-right: 0.5rem;
+ 
+}
+
+:host ::ng-deep .p-panelmenu .p-panelmenu-header > a .p-menuitem-icon {
+  margin-right: 0.5rem;
+}
+
+:host ::ng-deep .p-panelmenu .p-panelmenu-content .p-menuitem .p-menuitem-link .p-panelmenu-icon {
+  margin-right: 0.5rem;
+  display: none;
+}
+
+.header_branza {
+
+    height: 35px;
+    position: relative;
+    top: 7px;
+    font-size: 20px;
+    width: 300px;
+    text-align: center;
+
+}
+
+.lewy_panel {
+
+    float: left;
+    width: 300px;
+
+}
+
+.prawy_panel {
+
+    float: right;
+    width: 200px;
+    height: 500px;
+
+}

@@ -1,6 +1,6 @@
 export interface ProjektDetails {
-  projektDetailsID: number;
-  projektID: number;
-  dataDodania: string;
-  opis: string;
+  id: number;
+  projectId: number;
+  addingDate: string;
+  description: string;
 }

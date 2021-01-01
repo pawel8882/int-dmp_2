@@ -1,10 +1,10 @@
 import { ProjektDetails } from './projektdetails';
 
 export interface Projekt {
-  projektID: number;
+  id: number;
   name: string;
-  isComplete: boolean;
-  numer: string;
+  complete: boolean;
+  number: string;
 
-  projektDetails: ProjektDetails[];
+  details: ProjektDetails[];
 }

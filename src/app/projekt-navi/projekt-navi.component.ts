@@ -1,6 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { MenuItem } from 'primeng/api';
-import { branza_list } from '../projekt-navi/branza_list';
+import { MenuItem, PrimeIcons, PrimeNGConfig, PrimeTemplate } from 'primeng/api';
+import { department } from '../projekt-navi/department';
+import { lista_branz } from '../data/branza_list';
+import { panel_menu, panel_menu2, panel_pusty } from '../projekt-navi/panel-menu';
+import { ProjektyService } from '../projekty.service';
+import { Observable, Subject } from 'rxjs';
+
 
 @Component({
   selector: 'app-projekt-navi',
@@ -9,46 +14,38 @@ import { branza_list } from '../projekt-navi/branza_list';
 })
 export class ProjektNaviComponent implements OnInit {
 
-  constructor() { }
+  constructor(private projektservice: ProjektyService) { }
 
 
   ngOnInit() {
 
-    this.lista_alfabetycznie = this.lista.sort((a,b)=>a.name.localeCompare(b.name));
-    
-
+    this.getDepartments(1);
+    this.menu_lewe = panel_menu;
+   
   }
 
- lista: branza_list[] = [
-    {
-      projektID: 1,
-      name: "Konstrukcja"
-    },
-    {
-      projektID: 1,
-      name: "Architektura"
-    },
-    {
-      projektID: 1,
-      name: "Instalacje"
-   },
+  
+  department_list!: department[];
 
-   {
-     projektID: 1,
-     name: "Krawężnik"
-   },
-
-  ];
-
-  lista_alfabetycznie!: branza_list[];
+  menu_lewe!: MenuItem[];
 
   ikonka = "pi pi-plus";
 
-  add_branza = false;
+  add_department = false;
+
+  header_department!: string;
+
+
+  setHeaderBranza(department_id: number) {
+
+    this.menu_lewe = (this.department_list.find(a => a.id == department_id)?.menu) as MenuItem[];
+    this.header_department = (this.department_list.find(a => a.id == department_id)?.name) as string;
+
+  }
 
   ikonka_change() {
 
-    if (this.add_branza == false) {
+    if (this.add_department == false) {
             this.ikonka = "pi pi-plus";
           }
         else {
@@ -57,6 +54,16 @@ export class ProjektNaviComponent implements OnInit {
 
   }
 
+  getDepartments(id: number): void {
+    var sub = new Subject<department[]>();
+    sub.subscribe(
+      { next: (departments => this.department_list = departments)});
+    sub.subscribe(
+      { next: (departments => this.header_department = departments[0].name) });
+    sub.subscribe(
+      { next: (departments => this.menu_lewe = departments[0].menu) });
 
+    this.projektservice.getDepartments(id).subscribe(sub);
+  }
 
 }

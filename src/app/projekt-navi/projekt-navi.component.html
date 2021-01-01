@@ -5,7 +5,7 @@
   <div class="p-toolbar-group-right">
 
 
-   <button *ngFor="let branza of lista_alfabetycznie" pButton pRipple type="button" label={{branza.name}} class="p-button-text"></button>
+   <button *ngFor="let department of department_list" pButton pRipple type="button" label={{department.name}} class="p-button-text" (click)="setHeaderBranza(department.id)"></button>
 
 
 
@@ -16,3 +16,28 @@
     </div>
   </div>
 </p-toolbar>
+
+
+<div class="lewy_panel">
+  <div class="header_branza">{{header_department}}</div>
+  <p-panelMenu id="menuBranz" [model]="menu_lewe" [style]="{'width':'300px'}"></p-panelMenu>
+</div>
+
+<div class="prawy_panel">
+  <div class="p-grid">
+    <div class="p-col">
+      <div class="p-shadow-1">
+        <p-panel header="Narzędzia">
+          <div class="p-grid p-flex-column">
+            <div class="p-col">
+              <p-button label="Wiadomości" icon="pi pi-envelope" styleClass="p-button-warning" badge="2" badgeClass="p-badge-danger"></p-button>
+            </div>
+            <div class="p-col">
+              <p-button label="Kalendarz" icon="pi pi-calendar-times" styleClass="p-button-info"></p-button>
+            </div>
+          </div>
+        </p-panel>
+      </div>
+    </div>
+  </div>
+</div>

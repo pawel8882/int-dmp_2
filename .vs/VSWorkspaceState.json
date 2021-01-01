@@ -1,6 +1,12 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\src",
+    "\\src\\app",
+    "\\src\\app\\data",
+    "\\src\\app\\objekty",
+    "\\src\\app\\projekt-navi"
   ],
+  "SelectedNode": "\\src\\app\\projekt-navi\\panel-menu.ts",
   "PreviewInSolutionExplorer": false
 }
