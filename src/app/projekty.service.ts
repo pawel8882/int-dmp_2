@@ -4,6 +4,7 @@ import { Observable, of, throwError } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { Projekt } from './projekt';
 import { department } from './projekt-navi/department';
+import { CookieService } from 'ngx-cookie-service';
 
 
 @Injectable({
@@ -14,16 +15,18 @@ export class ProjektyService {
 
   log: any;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private Cookie: CookieService) { }
   url = 'http://localhost:4200/api/projects';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
+  httpToken = { headers: new HttpHeaders({ 'Content-type': 'application/x-www-form-urlencoded; charset=utf-8', 'Authorization': 'Bearer ' + this.Cookie.get('access_token')})};
+
   getProjekty(): Observable<Projekt[]> {
 
-    return this.http.get<Projekt[]>(this.url)
+    return this.http.get<Projekt[]>(this.url, this.httpToken)
       .pipe(
         tap(_ => console.log('Pobrano dane')),
           catchError(this.handleError<Projekt[]>('getProjekty', [])));
@@ -33,7 +36,7 @@ export class ProjektyService {
   getDepartments(id: number): Observable<department[]> {
 
     const url = `${this.url}/${id}/departments`;
-    return this.http.get<department[]>(url)
+    return this.http.get<department[]>(url, this.httpToken)
       .pipe(
         tap(_ => console.log('Pobrano dane')),
         catchError(this.handleError<department[]>('getProjekty', [])));
@@ -43,7 +46,7 @@ export class ProjektyService {
   getProjekt(id: number): Observable<Projekt> {
 
     const url = `${this.url}/${id}`;
-    return this.http.get<Projekt>(url)
+    return this.http.get<Projekt>(url, this.httpToken)
       .pipe(
         tap(_ => console.log('Pobrano projekt o id=${id}')),
         catchError(this.handleError<Projekt>('getProjekt id=${id}',)));

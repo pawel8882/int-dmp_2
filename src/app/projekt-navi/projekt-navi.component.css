@@ -42,6 +42,17 @@
 
     float: right;
     width: 200px;
-    height: 500px;
+    height: 200px;
+
+}
+
+.messages {
+
+    float: unset;
+    position: absolute;
+    left: 320px;
+    right: 220px;
+    min-height: 200px;
+    max-height: 2000px;
 
 }

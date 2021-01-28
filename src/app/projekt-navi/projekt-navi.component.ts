@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { MenuItem, PrimeIcons, PrimeNGConfig, PrimeTemplate } from 'primeng/api';
 import { department } from '../projekt-navi/department';
 import { lista_branz } from '../data/branza_list';
-import { panel_menu, panel_menu2, panel_pusty } from '../projekt-navi/panel-menu';
+import { panel_menu, panel_pusty } from '../projekt-navi/panel-menu';
 import { ProjektyService } from '../projekty.service';
 import { Observable, Subject } from 'rxjs';
 

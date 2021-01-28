@@ -6,13 +6,14 @@
 
 
 <div>
-  <button name="logowanie" (click)="OpenLink('app-objekty')" pButton pRipple type="button" label="Zaloguj" class="p-button-raised p-button-text"></button>
+  <button name="logowanie" (click)="login()" pButton pRipple type="button" label="Zaloguj" class="p-button-raised p-button-text"></button>
+  <button name="wylogowanie" (click)="logout()" pButton pRipple type="button" label="Wyloguj" class="p-button-raised p-button-text"></button>
   <button name="reset" (click)="OpenLink('reset')" pButton pRipple type="button" label="Reset" class="p-button-raised p-button-text"></button>
 </div>
 
 <router-outlet></router-outlet>
 
-<div>
+<div class="projekt_class">
   <app-projekt-navi></app-projekt-navi>
 </div>
 

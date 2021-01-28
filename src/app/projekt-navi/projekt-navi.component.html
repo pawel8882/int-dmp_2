@@ -9,10 +9,10 @@
 
 
 
-    <button pButton pRipple type="button" icon={{ikonka}} class="p-button-text" (click)="add_branza = !add_branza;ikonka_change()"></button>
-    <div *ngIf="add_branza">
+    <button pButton pRipple type="button" icon={{ikonka}} class="p-button-text" (click)="add_department = !add_department;ikonka_change()"></button>
+    <div *ngIf="add_department">
       <input type="text" pInputText />
-      <button label="Dodaj" pButton type="button" icon="pi pi-check" iconPos="left" class="size" (click)="add_branza = !add_branza;ikonka_change()"></button>
+      <button label="Dodaj" pButton type="button" icon="pi pi-check" iconPos="left" class="size" (click)="add_department = !add_department;ikonka_change()"></button>
     </div>
   </div>
 </p-toolbar>
@@ -40,4 +40,8 @@
       </div>
     </div>
   </div>
+</div>
+
+<div class="messages">
+  <app-messages></app-messages>
 </div>

@@ -3,10 +3,11 @@
     "",
     "\\src",
     "\\src\\app",
-    "\\src\\app\\data",
     "\\src\\app\\objekty",
-    "\\src\\app\\projekt-navi"
+    "\\src\\app\\projekt-navi",
+    "\\src\\app\\_class",
+    "\\src\\app\\_services"
   ],
-  "SelectedNode": "\\src\\app\\projekt-navi\\panel-menu.ts",
+  "SelectedNode": "\\proxy.config.json",
   "PreviewInSolutionExplorer": false
 }
