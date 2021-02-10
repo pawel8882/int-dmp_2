@@ -12,9 +12,11 @@ export class LoginService {
 
   constructor(private http: HttpClient, private Cookie: CookieService) { }
 
-  redirectUri = 'http://localhost:4200/';
+  redirectUri = 'http://localhost:4200';
+  redirectUri_logout = 'http://localhost:4200/';
   clientId = 'account';
   tokenUri = 'http://localhost:8081/auth/realms/int-dmp/protocol/openid-connect/token'
+  userInfoUri = 'http://localhost:8081/auth/realms/int-dmp/protocol/openid-connect/userinfo'
   token!: token;
   test!: string;
   
@@ -47,14 +49,18 @@ export class LoginService {
     window.location.href = 'http://localhost:4200';
   }
 
-  getResource(resourceUrl: string) : Observable<any> {
+  saveUserInfo(user: any) {
+    this.Cookie.set("user_name", user.preferred_username);
+    console.log('Obtained Access token');
+  }
+
+  getUserInfo(): Observable<any> {
     var headers = new HttpHeaders({
-      'Content-type': 'application/x-www-form-urlencoded; charset=utf-8',
-      'Authorization': 'Bearer ' + this.Cookie.get('access_token')
+      'Authorization': 'Bearer ' + this.Cookie.get('access_token'),
     });
-    return this.http.get(resourceUrl, { headers: headers }).pipe
-      (tap(_ => console.log('succes'), catchError(this.handleError)));
- 
+    return this.http.post(this.userInfoUri,"" ,{ headers: headers }).pipe
+      (tap(data => this.saveUserInfo(data), catchError(this.handleError)));
+
   }
 
   checkCredentials() {
@@ -71,8 +77,10 @@ export class LoginService {
     let token = this.Cookie.get('id_token');
     this.Cookie.delete('access_token');
     this.Cookie.delete('id_token');
+    this.Cookie.delete('user_name');
+    this.Cookie.delete('opened_project');
     let logoutURL = "http://localhost:8081/auth/realms/int-dmp/protocol/openid-connect/logout?redirect_uri="
-        + this.redirectUri;
+        + this.redirectUri_logout;
     window.location.href = logoutURL;
   }
  

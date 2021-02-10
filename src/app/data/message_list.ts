@@ -1,6 +1,6 @@
-import { message } from '../projekt-navi/messages/message';
+import { MessageInList } from '../_class/Messeges/MessegeInList';
 
-export const message_list: message[] = [
+export const message_list: MessageInList[] = [
   {
     id: 1,
     title: "Konstrukcja",

@@ -1,6 +1,6 @@
-import { person } from 'src/app/_class/Person';
+import { Person } from 'src/app/_class/Person';
 
-export const person_list: person[] = [
+export const person_list: Person[] = [
   {
     id: 1,
     firstName: "Jan",
@@ -18,7 +18,7 @@ export const person_list: person[] = [
   },
 
   {
-    id: 2,
+    id: 3,
     firstName: "Ryszard",
     lastName: "Matejko",
     role: "Inżynier",

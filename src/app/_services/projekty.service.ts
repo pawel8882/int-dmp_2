@@ -2,9 +2,11 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
-import { Projekt } from './projekt';
-import { department } from './projekt-navi/department';
+import { Project } from 'src/app/_class/Project';
+import { Department } from 'src/app/_class/department';
 import { CookieService } from 'ngx-cookie-service';
+import { HttpParams } from "@angular/common/http";
+import { LoginService } from 'src/app/_services/login.service';
 
 
 @Injectable({
@@ -24,36 +26,36 @@ export class ProjektyService {
 
   httpToken = { headers: new HttpHeaders({ 'Content-type': 'application/x-www-form-urlencoded; charset=utf-8', 'Authorization': 'Bearer ' + this.Cookie.get('access_token')})};
 
-  getProjekty(): Observable<Projekt[]> {
-
-    return this.http.get<Projekt[]>(this.url, this.httpToken)
+  getProjekty(user: string): Observable<Project[]> {
+    var params = {headers: this.httpToken.headers, params: new HttpParams().set('user', user) }
+    return this.http.get<Project[]>(this.url, params) 
       .pipe(
         tap(_ => console.log('Pobrano dane')),
-          catchError(this.handleError<Projekt[]>('getProjekty', [])));
+          catchError(this.handleError<Project[]>('getProjekty', [])));
 
   }
 
-  getDepartments(id: number): Observable<department[]> {
+  getDepartments(id: number): Observable<Department[]> {
 
     const url = `${this.url}/${id}/departments`;
-    return this.http.get<department[]>(url, this.httpToken)
+    return this.http.get<Department[]>(url, this.httpToken)
       .pipe(
         tap(_ => console.log('Pobrano dane')),
-        catchError(this.handleError<department[]>('getProjekty', [])));
+        catchError(this.handleError<Department[]>('getProjekty', [])));
 
   }
 
-  getProjekt(id: number): Observable<Projekt> {
+  getProjekt(id: number): Observable<Project> {
 
     const url = `${this.url}/${id}`;
-    return this.http.get<Projekt>(url, this.httpToken)
+    return this.http.get<Project>(url, this.httpToken)
       .pipe(
         tap(_ => console.log('Pobrano projekt o id=${id}')),
-        catchError(this.handleError<Projekt>('getProjekt id=${id}',)));
+        catchError(this.handleError<Project>('getProjekt id=${id}',)));
 
   }
 
-  updateProjekt(projekt: Projekt): Observable<any> {
+  updateProjekt(projekt: Project): Observable<any> {
     const id = projekt.id;
     const url = `${this.url}/${id}`;
     return this.http.put(url, projekt, this.httpOptions).pipe(
@@ -61,20 +63,20 @@ export class ProjektyService {
       catchError(this.handleError<any>('updateProjekt')))
   }
 
-  addProjekt(projekt: Projekt): Observable<Projekt> {
-    return this.http.post<Projekt>(this.url, projekt, this.httpOptions).pipe(
-      tap((newProjekt: Projekt) => console.log(`added projekt w/ id=${newProjekt.id}`)),
-      catchError(this.handleError<Projekt>('addProjekt'))
+  addProjekt(projekt: Project): Observable<Project> {
+    return this.http.post<Project>(this.url, projekt, this.httpOptions).pipe(
+      tap((newProjekt: Project) => console.log(`added projekt w/ id=${newProjekt.id}`)),
+      catchError(this.handleError<Project>('addProjekt'))
     );
   }
 
-  deleteProjekt(projekt: Projekt): Observable<Projekt> {
+  deleteProjekt(projekt: Project): Observable<Project> {
     const id = typeof projekt === 'number' ? projekt : projekt.id;
     const url = `${this.url}/${id}`;
 
-    return this.http.delete<Projekt>(url, this.httpOptions).pipe(
+    return this.http.delete<Project>(url, this.httpOptions).pipe(
       tap(_ => console.log(`deleted projekt id=${id}`)),
-      catchError(this.handleError<Projekt>('deleteProjekt'))
+      catchError(this.handleError<Project>('deleteProjekt'))
     );
   }
 

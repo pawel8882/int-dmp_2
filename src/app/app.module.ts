@@ -3,9 +3,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ObjektyComponent } from './objekty/objekty.component';
+import { ProjectsListComponent } from './projects-list/projects-list.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { DialogModule } from 'primeng/dialog';
@@ -20,6 +21,11 @@ import { TableModule } from 'primeng/table';
 import { EditorModule } from 'primeng/editor';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { FileUploadModule } from 'primeng/fileupload';
+import { ToastModule } from 'primeng/toast';
+import { MessagesModule } from 'primeng/messages';
+import { MessageModule } from 'primeng/message';
+import { BadgeModule } from 'primeng/badge';
+import { InplaceModule } from 'primeng/inplace';
 
 
 import { PanelMenuModule } from 'primeng/panelmenu';
@@ -39,7 +45,7 @@ import { OneMessageComponent } from './projekt-navi/messages/one-message/one-mes
 @NgModule({
   declarations: [
     AppComponent,
-    ObjektyComponent,
+    ProjectsListComponent,
     ProjektNaviComponent,
     MessagesComponent,
     NewMessageComponent,
@@ -68,7 +74,12 @@ import { OneMessageComponent } from './projekt-navi/messages/one-message/one-mes
     EditorModule,
     FormsModule,
     AutoCompleteModule,
-    FileUploadModule
+    FileUploadModule,
+    ToastModule,
+    MessageModule,
+    MessagesModule,
+    BadgeModule,
+    InplaceModule
   ],
   providers: [],
   bootstrap: [AppComponent]

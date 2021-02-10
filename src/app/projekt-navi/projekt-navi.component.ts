@@ -1,10 +1,13 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { MenuItem, PrimeIcons, PrimeNGConfig, PrimeTemplate } from 'primeng/api';
-import { department } from '../projekt-navi/department';
+import { Routes, RouterModule, Router, ActivatedRoute } from '@angular/router';
+import { Department } from '../_class/department';
 import { lista_branz } from '../data/branza_list';
-import { panel_menu, panel_pusty } from '../projekt-navi/panel-menu';
-import { ProjektyService } from '../projekty.service';
+import { panel_menu, panel_pusty } from '../data/panel-menu';
+import { ProjektyService } from '../_services/projekty.service';
 import { Observable, Subject } from 'rxjs';
+import { CookieService } from 'ngx-cookie-service'
+import { Project } from '../_class/Project';
 
 
 @Component({
@@ -14,18 +17,20 @@ import { Observable, Subject } from 'rxjs';
 })
 export class ProjektNaviComponent implements OnInit {
 
-  constructor(private projektservice: ProjektyService) { }
+  constructor(private projektservice: ProjektyService, private Cookie: CookieService, private router: Router, private route: ActivatedRoute) { }
 
 
   ngOnInit() {
 
-    this.getDepartments(1);
+    this.getDepartments(Number(this.Cookie.get("opened_project")));
+    this.getProjectHeader(Number(this.Cookie.get("opened_project")));
     this.menu_lewe = panel_menu;
    
   }
 
+  ProjectHeader!: Project;
   
-  department_list!: department[];
+  department_list!: Department[];
 
   menu_lewe!: MenuItem[];
 
@@ -55,7 +60,7 @@ export class ProjektNaviComponent implements OnInit {
   }
 
   getDepartments(id: number): void {
-    var sub = new Subject<department[]>();
+    var sub = new Subject<Department[]>();
     sub.subscribe(
       { next: (departments => this.department_list = departments)});
     sub.subscribe(
@@ -64,6 +69,18 @@ export class ProjektNaviComponent implements OnInit {
       { next: (departments => this.menu_lewe = departments[0].menu) });
 
     this.projektservice.getDepartments(id).subscribe(sub);
+  }
+
+  getProjectHeader(id: number): void {
+    var sub = new Subject();
+    sub.subscribe(
+      { next: (projekt => this.ProjectHeader = projekt as Project) });
+
+    this.projektservice.getProjekt(id).subscribe(sub);
+  }
+
+  OpenLink(link: string) {
+    this.router.navigate([link], { relativeTo: this.route });
   }
 
 }

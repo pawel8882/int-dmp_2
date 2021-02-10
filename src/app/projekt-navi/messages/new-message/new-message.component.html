@@ -2,7 +2,7 @@
   <div class="p-fluid">
     <div class="p-field">
       <label for="title_message">Tytuł wiadomości:</label>
-      <input placeholder="Tytuł" id="title_message" type="text" pInputText>
+      <input  [(ngModel)]="Header" placeholder="Tytuł" id="title_message" type="text" pInputText>
     </div>
   </div>
 </div>
@@ -12,8 +12,7 @@
   <div class="p-fluid">
     <div class="p-field">
       <label for="title_message">Treść wiadomości:</label>
-      <p-editor [ngModel]="text" [style]="{'height':'320px'}"></p-editor>
-    </div>
+      <p-editor [style]="{'height':'320px'}"></p-editor>
   </div>
 </div>
 
@@ -22,7 +21,7 @@
   <div class="p-inputgroup">
     <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
     <span class="auto_complete">
-      <p-autoComplete placeholder="Odbiorcy" [(ngModel)]="person_ToSend" [suggestions]="person_suggest" (completeMethod)="search_person_suggest()" [multiple]="true">
+      <p-autoComplete placeholder="Odbiorcy"  [(ngModel)]="personToSend" [suggestions]="personSuggest" (completeMethod)="searchPersonSuggest($event)" [multiple]="true" field="personName">
       </p-autoComplete>
     </span>
   </div>
@@ -32,7 +31,7 @@
   <div class="p-inputgroup">
     <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
     <span class="auto_complete">
-      <p-autoComplete placeholder="Do wiadomości" [(ngModel)]="person_ToSend" [suggestions]="person_suggest" (completeMethod)="search_person_suggest()" [multiple]="true">
+      <p-autoComplete placeholder="Do wiadomości" [(ngModel)]="personToSendDW" [suggestions]="personSuggest" (completeMethod)="searchPersonSuggest($event)" [multiple]="true" field="personName">
       </p-autoComplete>
     </span>
   </div>
@@ -61,5 +60,7 @@
 
 
 <div class="send">
-  <button pButton icon="pi pi-send" iconPos="left" type="button" class="p-button-rounded" label="Wyślij"></button>
+  <button pButton icon="pi pi-send" iconPos="left" type="button" class="p-button-rounded" label="Wyślij" (click)="send()"></button>
 </div>
+
+<p-toast position="bottom-center"></p-toast>

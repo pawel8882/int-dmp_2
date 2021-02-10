@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { message_list } from 'src/app/data/message_list';
-import { message } from 'src/app/projekt-navi/messages/message';
+import { MessageInList } from 'src/app/_class/Messeges/MessegeInList';
 
 @Component({
   selector: 'app-pin-messages',
@@ -17,7 +17,7 @@ export class PinMessagesComponent implements OnInit {
 
   }
 
-  messages!: message[];
+  messages!: MessageInList[];
 
-  selectedMessage!: message;
+  selectedMessage!: MessageInList;
 }

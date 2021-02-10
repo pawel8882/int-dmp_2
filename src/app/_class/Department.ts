@@ -1,6 +1,6 @@
 import { MenuItem } from 'primeng/api';
 
-export interface department {
+export interface Department {
   id: number;
   name: string;
   description: string;

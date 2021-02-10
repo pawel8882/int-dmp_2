@@ -2,21 +2,22 @@
 
 <title>IntDMP</title>
 <h1>{{title}}</h1>
-<p>Data i godzina: {{time | date:"dd MMM YYYY - hh:mm"}}</p>
+<p>{{time | date:"dd MMM YYYY - hh:mm"}}</p>
 
 
 <div>
-  <button name="logowanie" (click)="login()" pButton pRipple type="button" label="Zaloguj" class="p-button-raised p-button-text"></button>
-  <button name="wylogowanie" (click)="logout()" pButton pRipple type="button" label="Wyloguj" class="p-button-raised p-button-text"></button>
+  <button name="logowanie" (click)="login_logout_function()" pButton pRipple type="button" label={{login_label}} class="p-button-raised p-button-text"></button>
   <button name="reset" (click)="OpenLink('reset')" pButton pRipple type="button" label="Reset" class="p-button-raised p-button-text"></button>
+  <button name="projects" (click)="OpenLink('projects')" pButton pRipple type="button" label="Projects" class="p-button-raised p-button-text"></button>
+  <button name="userinfo" (click)="userInfo()" pButton pRipple type="button" label="Info" class="p-button-raised p-button-text"></button>
 </div>
 
-<router-outlet></router-outlet>
+<div>Zalogowano jako: {{UserInfo.name}}</div>
+
+
 
 <div class="projekt_class">
-  <app-projekt-navi></app-projekt-navi>
+  <router-outlet></router-outlet>
 </div>
-
-
 
 

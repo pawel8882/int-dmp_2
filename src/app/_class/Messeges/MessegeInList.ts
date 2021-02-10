@@ -1,6 +1,6 @@
 
 
-export interface message {
+export interface MessageInList {
   id: number;
   title: string;
   text: string;

@@ -27,3 +27,9 @@
   width: inherit;
 }
 
+.card {
+  position: relative;
+  top: 50px;
+  width: inherit;
+}
+

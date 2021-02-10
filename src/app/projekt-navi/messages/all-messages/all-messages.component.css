@@ -1,0 +1,7 @@
+.opened {
+  font-weight: bold;
+}
+
+.unopened {
+  font-weight: normal;
+}

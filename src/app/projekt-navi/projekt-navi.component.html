@@ -1,6 +1,6 @@
 <p-toolbar>
   <div class="p-toolbar-group-left">
-    <div class="p-text-bold">DANE PROJEKTU - NUMER PROJEKTU</div>
+    <div class="p-text-bold">{{ProjectHeader?.name}} - {{ProjectHeader?.number}}</div>
   </div>
   <div class="p-toolbar-group-right">
 
@@ -30,7 +30,7 @@
         <p-panel header="Narzędzia">
           <div class="p-grid p-flex-column">
             <div class="p-col">
-              <p-button label="Wiadomości" icon="pi pi-envelope" styleClass="p-button-warning" badge="2" badgeClass="p-badge-danger"></p-button>
+              <p-button label="Wiadomości" icon="pi pi-envelope" styleClass="p-button-warning" badge="2" badgeClass="p-badge-danger" (click)="OpenLink('messages')"></p-button>
             </div>
             <div class="p-col">
               <p-button label="Kalendarz" icon="pi pi-calendar-times" styleClass="p-button-info"></p-button>
@@ -43,5 +43,5 @@
 </div>
 
 <div class="messages">
-  <app-messages></app-messages>
+  <router-outlet></router-outlet>
 </div>
