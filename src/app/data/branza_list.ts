@@ -1,4 +1,4 @@
-import { Department } from '../_class/department';
+import { Department } from '../_class/Department';
 
 export const lista_branz: Department[] = [
   {

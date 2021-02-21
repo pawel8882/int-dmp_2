@@ -24,30 +24,23 @@
 .projekty li {
   position: relative;
   left: 0;
-  background-color: #EEE;
   margin: .5em;
   padding: .3em 0;
-  height: 1.6em;
   border-radius: 4px;
   color: black;
+  height: 40px;
+  text-align: left;
+  font-size: 15px;
 }
 
 .projekty li:hover {
-  color: #607D8B;
-  background-color: #DDD;
+  color: darkcyan;
   left: .1em;
+  font-size: 18px;
 }
 
 .button {
-  color: white;
-  text-align: end;
-  text-decoration: wavy;
-  font-size: 10px;
-  position: sticky;
-  padding: 5px 10px;
-  background-color: gray;
   float: right;
-  border: 1px solid blue;
 }
 
 .button1 {

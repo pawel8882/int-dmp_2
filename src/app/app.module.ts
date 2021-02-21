@@ -13,6 +13,7 @@ import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
 import { ProjektNaviComponent } from './projekt-navi/projekt-navi.component';
 import { ToolbarModule } from 'primeng/toolbar';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 import { SlideMenuModule } from 'primeng/slidemenu';
 import { InputTextModule } from 'primeng/inputtext';
@@ -26,6 +27,9 @@ import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
 import { BadgeModule } from 'primeng/badge';
 import { InplaceModule } from 'primeng/inplace';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { DropdownModule } from 'primeng/dropdown';
+import { MultiSelectModule } from 'primeng/multiselect';
 
 
 import { PanelMenuModule } from 'primeng/panelmenu';
@@ -38,6 +42,9 @@ import { AllMessagesComponent } from './projekt-navi/messages/all-messages/all-m
 import { CustomMessagesComponent } from './projekt-navi/messages/custom-messages/custom-messages.component';
 import { SentMessagesComponent } from './projekt-navi/messages/sent-messages/sent-messages.component';
 import { OneMessageComponent } from './projekt-navi/messages/one-message/one-message.component';
+import { LoggingTimeComponent } from './logging-time/logging-time.component';
+import { ReplyEditorComponent } from './projekt-navi/messages/one-message/reply-editor/reply-editor.component';
+import { PaginatorComponent } from './projekt-navi/messages/paginator/paginator.component';
 
 
 
@@ -53,7 +60,11 @@ import { OneMessageComponent } from './projekt-navi/messages/one-message/one-mes
     AllMessagesComponent,
     CustomMessagesComponent,
     SentMessagesComponent,
-    OneMessageComponent
+    OneMessageComponent,
+    LoggingTimeComponent,
+    ReplyEditorComponent,
+    PaginatorComponent
+
   ],
   imports: [
     BrowserModule,
@@ -79,7 +90,11 @@ import { OneMessageComponent } from './projekt-navi/messages/one-message/one-mes
     MessageModule,
     MessagesModule,
     BadgeModule,
-    InplaceModule
+    InplaceModule,
+    ProgressSpinnerModule,
+    MatPaginatorModule,
+    DropdownModule,
+    MultiSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

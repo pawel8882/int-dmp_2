@@ -33,3 +33,25 @@
   width: inherit;
 }
 
+.fromUser {
+  font-size: 14px;
+  font-weight: bold;
+  margin-right: auto;
+}
+
+.fromDate {
+  font-size: 12px;
+  font-weight: bold;
+  font-style: italic;
+  margin-left: auto; 
+}
+
+.messageTitle {
+    font-size: 18px;
+    font-weight: bolder;
+}
+
+.messages {
+    position: relative;
+    top: 30px;
+}

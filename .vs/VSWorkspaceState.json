@@ -3,12 +3,15 @@
     "",
     "\\src",
     "\\src\\app",
-    "\\src\\app\\projects-list",
     "\\src\\app\\projekt-navi",
     "\\src\\app\\projekt-navi\\messages",
+    "\\src\\app\\projekt-navi\\messages\\all-messages",
+    "\\src\\app\\projekt-navi\\messages\\new-message",
+    "\\src\\app\\projekt-navi\\messages\\one-message",
     "\\src\\app\\_class",
+    "\\src\\app\\_class\\Messeges",
     "\\src\\app\\_services"
   ],
-  "SelectedNode": "\\src\\app\\_class\\department.ts",
+  "SelectedNode": "\\src\\app\\projekt-navi\\messages\\paginator\\PaginatorFilterClass.ts",
   "PreviewInSolutionExplorer": false
 }

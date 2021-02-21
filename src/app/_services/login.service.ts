@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service'
-import { Observable } from 'rxjs';
+import { Observable, of, throwError, Subject } from 'rxjs';
 import { catchError, map, tap, } from 'rxjs/operators';
 import { token } from '../_class/token';
 
@@ -12,7 +12,7 @@ export class LoginService {
 
   constructor(private http: HttpClient, private Cookie: CookieService) { }
 
-  redirectUri = 'http://localhost:4200';
+  redirectUri = 'http://localhost:4200/logging';
   redirectUri_logout = 'http://localhost:4200/';
   clientId = 'account';
   tokenUri = 'http://localhost:8081/auth/realms/int-dmp/protocol/openid-connect/token'
@@ -37,8 +37,18 @@ export class LoginService {
     this.http.post<any>(this.tokenUri,
       params.toString(), { headers: headers })
       .subscribe(
-        data => this.saveToken(data),
+        data => this.loginProcess(data),
         error => alert(error.error.message));
+  }
+
+  loginProcess(data: any) {
+    var sub = new Subject();
+    sub.subscribe(
+      { next: (data => this.saveToken(data)) });
+    sub.subscribe(
+      { next: (data => this.getUserInfo(data)) });
+
+    sub.next(data);
   }
 
   saveToken(token: any) {
@@ -46,20 +56,23 @@ export class LoginService {
     this.Cookie.set("access_token", token.access_token, expireDate);
     this.Cookie.set("id_token", this.clientId, expireDate);
     console.log('Obtained Access token');
-    window.location.href = 'http://localhost:4200';
+    
   }
 
   saveUserInfo(user: any) {
     this.Cookie.set("user_name", user.preferred_username);
-    console.log('Obtained Access token');
+    this.Cookie.set("userinfo", user.name);
+    console.log('Obtained user info');
+    window.location.href = 'http://localhost:4200';
+   
   }
 
-  getUserInfo(): Observable<any> {
+  getUserInfo(token: any) {
     var headers = new HttpHeaders({
-      'Authorization': 'Bearer ' + this.Cookie.get('access_token'),
+      'Authorization': 'Bearer ' + token.access_token,
     });
-    return this.http.post(this.userInfoUri,"" ,{ headers: headers }).pipe
-      (tap(data => this.saveUserInfo(data), catchError(this.handleError)));
+    this.http.post(this.userInfoUri,"" ,{ headers: headers }).subscribe(
+      data => this.saveUserInfo(data)), catchError(this.handleError<any>('userInfo'));
 
   }
 
@@ -79,15 +92,18 @@ export class LoginService {
     this.Cookie.delete('id_token');
     this.Cookie.delete('user_name');
     this.Cookie.delete('opened_project');
+    this.Cookie.delete('userinfo');
     let logoutURL = "http://localhost:8081/auth/realms/int-dmp/protocol/openid-connect/logout?redirect_uri="
         + this.redirectUri_logout;
     window.location.href = logoutURL;
   }
- 
-  private handleError() {
 
-    return (error: any) =>
-    console.log('Error');
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      console.error('Błąd podczas pobierania danych');
+      console.log(`${operation} failed: ${error.message}`);
+      return of(result as T);
+    }
 
   }
   

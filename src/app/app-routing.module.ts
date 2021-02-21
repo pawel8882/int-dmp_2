@@ -10,11 +10,13 @@ import { NewMessageComponent } from './projekt-navi/messages/new-message/new-mes
 import { OneMessageComponent } from './projekt-navi/messages/one-message/one-message.component';
 import { PinMessagesComponent } from './projekt-navi/messages/pin-messages/pin-messages.component';
 import { CustomMessagesComponent } from './projekt-navi/messages/custom-messages/custom-messages.component';
+import { LoggingTimeComponent } from './logging-time/logging-time.component';
+import { ReplyEditorComponent } from './projekt-navi/messages/one-message/reply-editor/reply-editor.component';
 
 
 const routes: Routes = [
-  {
-    path: 'projects', component: ProjectsListComponent},
+  { path: 'logging', component: LoggingTimeComponent },
+  { path: 'projects', component: ProjectsListComponent },
   { path: 'strona_glowna', component: AppComponent },
   { path: 'reset', redirectTo: '' },
   {
@@ -26,7 +28,7 @@ const routes: Routes = [
           { path: 'SentMessages', component: SentMessagesComponent },
           { path: 'ReceivedMessages', component: AllMessagesComponent },
           { path: 'NewMessage', component: NewMessageComponent },
-          { path: 'OneMessage', component: OneMessageComponent },
+          { path: 'OneMessage', component: OneMessageComponent, children: [{ path: 'reply', component: ReplyEditorComponent}] },
           { path: 'PinMessages', component: PinMessagesComponent },
           { path: 'CustomMessages', component: CustomMessagesComponent },
         ]

@@ -1,0 +1,15 @@
+.logging {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 0%;
+}
+
+.log {
+  font-size: 22px;
+  color: darkcyan;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 0%;
+}

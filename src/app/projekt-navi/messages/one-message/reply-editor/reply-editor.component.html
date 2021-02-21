@@ -1,0 +1,35 @@
+<div class="card">
+  <div class="p-fluid">
+    <div class="p-field">
+      <label for="title_message">Treść wiadomości:</label>
+      <p-editor [style]="{'height':'320px'}"></p-editor>
+    </div>
+  </div>
+
+  <div class="upload_files">
+    <span>Załączniki:</span>
+    <p-fileUpload #fileUpload name="files[]" (onSelect)="onSelect($event)"
+                  [multiple]="true" [maxFileSize]="1000000" chooseLabel="Dodaj pliki" uploadLabel="Załącz pliki" cancelLabel="Anuluj">
+      <ng-template pTemplate="toolbar">
+
+      </ng-template>
+      <ng-template let-file pTemplate="file">
+        <div>
+          <div>{{file.name}} - {{file.size}}</div>
+        </div>
+      </ng-template>
+      <ng-template pTemplate="content">
+        <ul *ngIf="uploadedFiles?.length">
+          <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+        </ul>
+      </ng-template>
+    </p-fileUpload>
+  </div>
+
+
+
+  <div class="send">
+    <button pButton icon="pi pi-send" iconPos="left" type="button" class="p-button-rounded" label="Wyślij" (click)="send()"></button>
+  </div>
+
+  <p-toast position="bottom-center"></p-toast>

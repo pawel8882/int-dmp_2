@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, of, throwError } from 'rxjs';
+import { Observable, of, throwError, Subject } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { Project } from 'src/app/_class/Project';
-import { Department } from 'src/app/_class/department';
+import { Department } from 'src/app/_class/Department';
 import { CookieService } from 'ngx-cookie-service';
 import { HttpParams } from "@angular/common/http";
 import { LoginService } from 'src/app/_services/login.service';

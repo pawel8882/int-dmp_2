@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { MenuItem, PrimeIcons, PrimeNGConfig, PrimeTemplate } from 'primeng/api';
 import { Routes, RouterModule, Router, ActivatedRoute } from '@angular/router';
-import { Department } from '../_class/department';
+import { Department } from '../_class/Department';
 import { lista_branz } from '../data/branza_list';
 import { panel_menu, panel_pusty } from '../data/panel-menu';
 import { ProjektyService } from '../_services/projekty.service';

@@ -19,7 +19,7 @@ export class AppComponent implements OnInit {
 
   routes!: Routes;
 
-  constructor(private primengConfig: PrimeNGConfig, private router: Router, private log: LoginService) {
+  constructor(private primengConfig: PrimeNGConfig, private router: Router, private log: LoginService, private Cookie: CookieService) {
     setInterval(() => this.time = new Date(), 3000);
   }
 
@@ -27,12 +27,12 @@ export class AppComponent implements OnInit {
     this.primengConfig.ripple = true;
     document.title = "IntDMP";
     this.isLoggedIn = this.log.checkCredentials();
-    this.login_logout_change();
     let i = window.location.href.indexOf('code');
     if (!this.isLoggedIn && i != -1) {
       this.log.retrieveToken(window.location.href.substring(i + 5));
     }
-    this.userInfo();
+    this.login_logout_change();
+    this.UserInfo = this.Cookie.get('userinfo');
 
   }
 
@@ -58,9 +58,6 @@ export class AppComponent implements OnInit {
     else { this.logout() }
   }
 
-  userInfo() {
-    this.log.getUserInfo().subscribe(data => { this.UserInfo = data });
-  }
 
   title = 'Menadżer projektów';
   nazwaControl = new FormControl('');

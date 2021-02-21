@@ -1,0 +1,37 @@
+::ng-deep .mat-paginator {
+  background-color: #2a323d;
+  color: aquamarine;
+  float: right;
+}
+
+  ::ng-deep .mat-paginator .mat-paginator-page-size .mat-select-value {
+    color: aquamarine;
+  }
+
+  ::ng-deep .mat-paginator .mat-paginator-page-size .mat-select-arrow {
+    color: aquamarine;
+  }
+
+:host ::ng-deep .p-inputtext {
+
+  padding: 0.435rem 2.5rem;
+
+}
+
+.search {
+
+    position: relative;
+    top: 2px;
+
+}
+
+.categories {
+  position: relative;
+  left: 50px;
+  top: 9.5px;
+  background-color: red;
+}
+
+.CategoriesChipsCustom :host ::ng-deep .p-multiselect.p-multiselect-chip .p-multiselect-token {
+  background: red;
+}

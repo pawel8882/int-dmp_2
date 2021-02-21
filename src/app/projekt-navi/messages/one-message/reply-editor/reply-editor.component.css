@@ -1,0 +1,10 @@
+.send {
+  position: relative;
+  top: 20px;
+  float: right;
+}
+
+.upload_files {
+  position: relative;
+  top: 10px;
+}

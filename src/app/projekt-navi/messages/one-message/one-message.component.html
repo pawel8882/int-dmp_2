@@ -1,39 +1,60 @@
-<div class="nadawcy">
-  <div class="p-fluid">
-    <div class="p-inputgroup">
-      <span class="p-inputgroup-addon">OD:</span>
-      <input class="input" type="text" pInputText [disabled]="true" />
+
+<div *ngIf="messageId==0">Brak wybranej wiadomości</div>
+<div *ngIf="messageId>0" class="p-grid p-flex-column">
+  <div class="p-col">
+    <div class="box">
+      <span><button pButton type="button" icon="pi pi-caret-left" label="Wstecz" class="p-button-text p-button-success"></button></span>
+      <span><button pButton type="button" icon="pi pi-tag" label="Przypnij wiadomość" class="p-button-text p-button-success"></button></span>
+      <span><button pButton type="button" icon="pi pi-flag" label="Przypisz kategorię" class="p-button-text p-button-success"></button></span>
+      <span><button pButton type="button" icon="pi pi-reply" label="Odpowiedz" class="p-button-text p-button-success" (click)="OpenLink('reply')"></button></span>
+    </div>
+  </div>
+  <div class="p-col">
+    <div class="replyEditor">
+      <router-outlet>
+      </router-outlet>
+    </div>
+  </div>
+  <div class="p-col">
+    <div class="box">
+      <span class="messageTitle">{{detailedMessage.header}}</span>
+    </div>
+  </div>
+  <div class="p-col">
+    <div class="box">
+      Właściciel: <span class="owner">{{detailedMessage.owner.personName}}</span>
+    </div>
+  </div>
+  <div class="p-col">
+    <div class="box">
+      DO: <span class="toPersons" *ngFor="let person of detailedMessage.toPersons">{{person.personName}}; </span>
+    </div>
+  </div>
+  <div class="p-col">
+    <div class="box">
+      DW: <span class="dwPersons" *ngFor="let person of detailedMessage.dwPersons">{{person.personName}}; </span>
     </div>
   </div>
 </div>
-
-<div class="odbiorcy_do">
-  <div class="p-fluid">
-    <div class="p-inputgroup">
-      <span class="p-inputgroup-addon">DO:</span>
-      <input class="input" type="text" pInputText [disabled]="true" />
+<div *ngIf="messageId>0" class="messages">
+  <div class="p-grid p-flex-column">
+    <div class="p-col" *ngFor="let reply of detailedMessage.message.replyMessages; let i=index">
+        <p-panel>
+          <ng-template pTemplate="header">
+            <span class="fromUser">{{reply.owner.personName}}</span><span class="fromDate">{{reply.timestamp}}</span>
+          </ng-template>
+          <div id="messageContent{{i}}"></div>
+        </p-panel>
+    </div>
+    <div class="p-col">
+      <p-panel>
+        <ng-template pTemplate="header">
+          <span class="fromUser">{{detailedMessage.owner.personName}}</span><span class="fromDate">{{detailedMessage.message.timestamp}}</span>
+        </ng-template>
+        <div id="messageContent"></div>
+      </p-panel>
     </div>
   </div>
 </div>
-
-<div class="odbiorcy_dw">
-  <div class="p-fluid">
-    <div class="p-inputgroup">
-      <span class="p-inputgroup-addon">DW:</span>
-      <input class="input" type="text" pInputText [disabled]="true" />
-    </div>
-  </div>
-</div>
-
-<div class="card">
-  <div class="p-fluid">
-    <div class="p-field">
-      <div></div>
-    </div>
-  </div>
-  </div>
-
-  <div id="test"></div>
-
 
 

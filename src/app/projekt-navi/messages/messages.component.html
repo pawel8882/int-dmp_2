@@ -2,15 +2,12 @@
 
 <nav mat-tab-nav-bar animationDuration="500ms">
   <a mat-tab-link (click)="OpenLink('ReceivedMessages')" class="list_messages">
-      <i class="pi pi-inbox"></i>
-      &nbsp;Wiadomości
+    <i class="pi pi-envelope"></i>
+    &nbsp;Wiadomości
   </a>
   <a mat-tab-link (click)="OpenLink('SentMessages')" class="list_messages">
     <i class="pi pi-send"></i>
-    &nbsp;Wysłane wiadomości</a>
-  <a mat-tab-link (click)="OpenLink('NewMessage')" class="list_messages">
-    <i class="pi pi-pencil"></i>
-    &nbsp;Nowa wiadomość
+    &nbsp;Wysłane wiadomości
   </a>
   <a mat-tab-link (click)="OpenLink('PinMessages')" class="list_messages">
     <i class="pi pi-tags"></i>
@@ -20,9 +17,13 @@
     <i class="pi pi-users"></i>
     &nbsp;Książka adresowa
   </a>
+  <a mat-tab-link (click)="OpenLink('NewMessage')" class="list_messages">
+    <i class="pi pi-pencil"></i>
+    &nbsp;Nowa wiadomość
+  </a>
   <a mat-tab-link (click)="OpenLink('OneMessage')" class="list_messages">
     <i class="pi pi-inbox"></i>
-    &nbsp;Wiadomości
+    &nbsp;Otwarta wiadomość
   </a>
 </nav>
 

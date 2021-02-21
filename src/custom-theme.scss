@@ -25,11 +25,13 @@ $int-dmp-theme: mat-light-theme((
     primary: $int-dmp-primary,
     accent: $int-dmp-accent,
     warn: $int-dmp-warn,
+    foreground: $int-dmp-primary,
+    background: $int-dmp-accent,
   )
 ));
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
-@include angular-material-theme($int-dmp-theme);
+  @include angular-material-theme($int-dmp-theme);
 

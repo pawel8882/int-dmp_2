@@ -1,21 +1,24 @@
+
+<app-paginator (newPaginator)="filterMessages($event)"></app-paginator>
+
 <div class="card">
-  <p-table [value]="SentMessages" selectionMode="single" [(selection)]="selectedMessage" dataKey="id" styleClass="p-datatable-sm">
+  <p-table [value]="SentMessages" selectionMode="single" [(selection)]="selectedMessage" styleClass="p-datatable-sm" (onRowSelect)="onRowSelect($event)">
     <ng-template pTemplate="header">
       <tr>
-        <th>Do (w opracowaniu)</th>
+        <th>Do</th>
         <th>Tytuł</th>
         <th>Data</th>
         <th>Kategoria</th>
       </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-SentMessages>
-      <tr [pSelectableRow]="SentMessages">
-        <td><a *ngFor="let person of SentMessages.persons; let i=index;"><span *ngIf="i==0">{{person.personName}}&nbsp;</span></a>
-            <span *ngIf="SentMessages.persons.length>1">, ...&nbsp;+{{SentMessages.persons.length-1}}</span>
+    <ng-template pTemplate="body" let-SentMessage>
+      <tr [pSelectableRow]="SentMessage">
+        <td><a *ngFor="let person of SentMessage.toPersons; let i=index;"><span *ngIf="i==0">{{person.personName}}&nbsp;</span></a>
+            <span *ngIf="SentMessage.toPersons.length>1">, ...&nbsp;+{{SentMessage.toPersons.length-1}}</span>
         </td>
-        <td>{{SentMessages.header.title}}</td>
-        <td>{{SentMessages.header.timestamp}}</td>
-        <td>{{SentMessages.category}}</td>
+        <td>{{SentMessage.title}}</td>
+        <td>{{SentMessage.timestamp}}</td>
+        <td>{{SentMessage.category.category}}</td>
       </tr>
     </ng-template>
   </p-table>

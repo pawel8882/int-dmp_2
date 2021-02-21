@@ -9,14 +9,13 @@
   <button name="logowanie" (click)="login_logout_function()" pButton pRipple type="button" label={{login_label}} class="p-button-raised p-button-text"></button>
   <button name="reset" (click)="OpenLink('reset')" pButton pRipple type="button" label="Reset" class="p-button-raised p-button-text"></button>
   <button name="projects" (click)="OpenLink('projects')" pButton pRipple type="button" label="Projects" class="p-button-raised p-button-text"></button>
-  <button name="userinfo" (click)="userInfo()" pButton pRipple type="button" label="Info" class="p-button-raised p-button-text"></button>
 </div>
 
-<div>Zalogowano jako: {{UserInfo.name}}</div>
+<div *ngIf="UserInfo.length>1">Zalogowano jako: {{UserInfo}}</div>
 
 
 
-<div class="projekt_class">
+<div class="app">
   <router-outlet></router-outlet>
 </div>
 

@@ -4,17 +4,15 @@
 <div class="lista_lewa">
   <ul class="projekty">
     <li *ngFor="let projekt of projekty">
-      {{projekt.name}} <span> - </span> {{projekt.number}} <span>
-        <button class="button" (click)="delete_projekt(projekt.name)">
-          Usuń
+      {{projekt.name}} <span> - </span> {{projekt.number}}
+    <span class="button">
+      <span class="p-buttonset">
+        <button pButton pRipple class="p-button-raised p-button-sm" type="button" label="Szczegóły" (click)="showDialog(); getOneProjekt(projekt.id)">
         </button>
-        <button class="button" (click)="showDialog(); getOneProjekt(projekt.id)">
-          Szczegóły
-        </button>
-      <button class="button" (click)="openProject('projekt-navi', projekt.id)">
-          Otwórz
+        <button pButton pRipple class="p-button-raised p-button-sm" type="button" label="Otwórz" (click)="openProject('projekt-navi', projekt.id)">
         </button>
       </span>
+    </span>
     </li>
   </ul>
 </div>

@@ -30,10 +30,10 @@
         <p-panel header="Narzędzia">
           <div class="p-grid p-flex-column">
             <div class="p-col">
-              <p-button label="Wiadomości" icon="pi pi-envelope" styleClass="p-button-warning" badge="2" badgeClass="p-badge-danger" (click)="OpenLink('messages')"></p-button>
+              <span><button pButton type="button" class="p-button-text" label="Wiadomości" icon="pi pi-envelope" badge="2" (click)="OpenLink('messages/ReceivedMessages')"></button></span>
             </div>
             <div class="p-col">
-              <p-button label="Kalendarz" icon="pi pi-calendar-times" styleClass="p-button-info"></p-button>
+              <button pButton type="button" class="p-button-text" label="Kalendarz" icon="pi pi-calendar-times"></button>
             </div>
           </div>
         </p-panel>
