@@ -14,6 +14,7 @@ import Delta from 'quill-delta';
 import { Editor } from "primeng/editor";
 import { Message } from '../../../../_class/Messeges/Message';
 import { Header } from '../../../../_class/Messeges/Header';
+import { DisplayMessage } from '../../../../_class/Messeges/DidsplayMessages';
 
 @Component({
   selector: 'app-reply-editor',
@@ -27,7 +28,7 @@ export class ReplyEditorComponent implements OnInit {
   constructor(private mgService: MessagesService, private Cookie: CookieService, private messageService: MessageService, private dataService: DataService) { }
 
   ngOnInit(): void {
-    this.dataService.currentMessageId.subscribe(data => this.messageId = data);
+    this.dataService.currentMessageData.subscribe(data => this.messageData = data);
   }
 
   ngAfterViewInit(): void {
@@ -36,15 +37,11 @@ export class ReplyEditorComponent implements OnInit {
 
   }
 
-  @Input() messageId!: number;
+  @Input() messageData!: DisplayMessage;
 
   textEditor!: Quill;
 
   mailText!: Delta;
-
-  personToSend: SuggestPerson[] = [];
-
-  personToSendDW: SuggestPerson[] = [];
 
   uploadedFiles: any[] = [];
 
@@ -62,10 +59,10 @@ export class ReplyEditorComponent implements OnInit {
     else {
       var message = new NewMessage();
       var delta = new Delta(this.textEditor.getContents());
-      message.toPersons = this.personToSend;
-      message.dwPersons = this.personToSendDW;
+      message.toPersons = this.messageData.toPersons;
+      message.dwPersons = this.messageData.dwPersons;
 
-      this.mgService.sentReplyMessage(this.messageId, this.Cookie.get("user_name"), message, delta)
+      this.mgService.sentReplyMessage(this.messageData.messageId, this.Cookie.get("user_name"), message, delta, this.messageData.id, this.messageData.type)
         .subscribe(data => { this.messagePOP('success', 'Wysłano wiadomość', ''), this.cleanMessage() }, error => this.messagePOP('warn', 'Błąd', ''));
     }
   }
@@ -79,8 +76,6 @@ export class ReplyEditorComponent implements OnInit {
 
   cleanMessage(): void {
 
-    this.personToSend = [];
-    this.personToSendDW = [];
     var delta = new Delta();
     this.textEditor.setContents(delta);
 

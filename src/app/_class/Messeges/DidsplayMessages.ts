@@ -9,6 +9,10 @@ export interface DisplayMessage {
   timestamp: string;
   category: string;
   opened: boolean;
+  type: string;
+  id: number;
+  pinned: boolean;
 
   toPersons: SuggestPerson[];
+  dwPersons: SuggestPerson[];
 }

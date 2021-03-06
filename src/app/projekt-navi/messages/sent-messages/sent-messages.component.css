@@ -1,9 +1,11 @@
 .opened {
-
-    font-weight: bold;
-
+  font-weight: bold;
 }
 
 .unopened {
   font-weight: normal;
+}
+
+.pinned {
+  float: right;
 }

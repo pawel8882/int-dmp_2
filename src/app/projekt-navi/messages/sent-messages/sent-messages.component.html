@@ -1,5 +1,5 @@
 
-<app-paginator (newPaginator)="filterMessages($event)"></app-paginator>
+<app-paginator (newPaginator)="filterMessages($event)" [totalMessages]="totalMessages"></app-paginator>
 
 <div class="card">
   <p-table [value]="SentMessages" selectionMode="single" [(selection)]="selectedMessage" styleClass="p-datatable-sm" (onRowSelect)="onRowSelect($event)">
@@ -17,8 +17,8 @@
             <span *ngIf="SentMessage.toPersons.length>1">, ...&nbsp;+{{SentMessage.toPersons.length-1}}</span>
         </td>
         <td>{{SentMessage.title}}</td>
-        <td>{{SentMessage.timestamp}}</td>
-        <td>{{SentMessage.category.category}}</td>
+        <td>{{SentMessage.timestamp | date: 'dd.MM.YYY HH:mm'}}</td>
+        <td>{{SentMessage.category.category}}<i *ngIf="SentMessage.pinned == true" class="pi pi-tag pinned"></i></td>
       </tr>
     </ng-template>
   </p-table>

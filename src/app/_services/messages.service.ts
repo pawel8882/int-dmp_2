@@ -12,6 +12,7 @@ import { DetailedMessage } from 'src/app/_class/Messeges/DetailedMessage';
 import { DisplayMessage } from 'src/app/_class/Messeges/DidsplayMessages';
 import { ParamDisplayMessages } from 'src/app/_class/Messeges/ParamDisplayMessages';
 import { Category } from 'src/app/_class/Messeges/Category';
+import { UpdateMessage } from 'src/app/_class/Messeges/UpdateMessage';
 import { PaginatorFilterClass } from '../projekt-navi/messages/paginator/PaginatorFilterClass';
 import Delta from 'quill-delta';
 
@@ -38,12 +39,31 @@ export class MessagesService {
 
   }
 
+  getReceivedPinnedMessages(user: string, projectId: number, paginator: PaginatorFilterClass): Observable<ParamDisplayMessages> {
+    var params = { headers: this.httpToken.headers, params: new HttpParams().set('user', user) };
+    return this.http.post<ParamDisplayMessages>(this.url + `/${projectId}/` + "receivedpinned", paginator, params)
+      .pipe(
+        tap(_ => console.log('Pobrano odebrane wiadomości.')),
+        catchError(this.handleError<ParamDisplayMessages>('Error',)));
+
+  }
+
   getSentMessages(user: string, projectId: number, paginator: PaginatorFilterClass): Observable<ParamDisplayMessages> {
     var params = { headers: this.httpToken.headers, params: new HttpParams().set('user', user) };
     return this.http.post<ParamDisplayMessages>(this.url + `/${projectId}/` + "sent", paginator, params)
       .pipe(
         tap(_ => console.log('Pobrano wysłane wiadomości.')),
         catchError(this.handleError<ParamDisplayMessages>('Error', )));
+
+  }
+
+
+  getSentPinnedMessages(user: string, projectId: number, paginator: PaginatorFilterClass): Observable<ParamDisplayMessages> {
+    var params = { headers: this.httpToken.headers, params: new HttpParams().set('user', user) };
+    return this.http.post<ParamDisplayMessages>(this.url + `/${projectId}/` + "sentpinned", paginator, params)
+      .pipe(
+        tap(_ => console.log('Pobrano wysłane wiadomości.')),
+        catchError(this.handleError<ParamDisplayMessages>('Error',)));
 
   }
 
@@ -76,10 +96,10 @@ export class MessagesService {
 
   }
 
-  sentReplyMessage(messageId: number, user: string, newMessage: NewMessage, delta: Delta): Observable<NewMessage> {
+  sentReplyMessage(messageId: number, user: string, newMessage: NewMessage, delta: Delta, id: number, character: string): Observable<NewMessage> {
     var content = JSON.stringify(delta);
     newMessage.content = content;
-    var params = { headers: this.httpToken.headers, params: new HttpParams().set('user', user) };
+    var params = { headers: this.httpToken.headers, params: new HttpParams().set('user', user).set('id', String(id)).set('char', character) };
     return this.http.post<NewMessage>(this.url + `/detailedMessage/${messageId}`, newMessage, params)
       .pipe(
         tap(_ => console.log('Message reply sent.')),
@@ -87,12 +107,21 @@ export class MessagesService {
 
   }
 
-  getDetailedMessage(messageId: number, user: string): Observable<DetailedMessage> {
-    var params = { headers: this.httpToken.headers, params: new HttpParams().set('user', user) };
+  getDetailedMessage(messageId: number, user: string, id: number, character: string): Observable<DetailedMessage> {
+    var params = { headers: this.httpToken.headers, params: new HttpParams().set('user', user).set('id', String(id)).set('char', character) };
     return this.http.get<DetailedMessage>(this.url + `/detailedMessage/${messageId}`, params)
       .pipe(
         tap(_ => console.log('Detailed message obtained.')),
         catchError(this.handleError<DetailedMessage>('Error', )));
+
+  }
+
+  setPinned(messageId: number, user: string, updateMessage: UpdateMessage): Observable<boolean> {
+    var params = { headers: this.httpToken.headers, params: new HttpParams().set('user', user) };
+    return this.http.patch<boolean>(this.url + `/detailedMessage/${messageId}`, updateMessage, params)
+      .pipe(
+        tap(_ => console.log('Pinned changed.')),
+        catchError(this.handleError<boolean>('Error',)));
 
   }
 

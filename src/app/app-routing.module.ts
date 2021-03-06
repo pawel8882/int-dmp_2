@@ -13,6 +13,18 @@ import { CustomMessagesComponent } from './projekt-navi/messages/custom-messages
 import { LoggingTimeComponent } from './logging-time/logging-time.component';
 import { ReplyEditorComponent } from './projekt-navi/messages/one-message/reply-editor/reply-editor.component';
 
+import { ProjectWorkComponent } from './projekt-navi/project-work/project-work.component';
+import { TasksComponent } from './projekt-navi/project-work/tasks/tasks.component';
+import { ScheduleComponent } from './projekt-navi/project-work/schedule/schedule.component';
+import { ShortMessagesComponent } from './projekt-navi/project-work/short-messages/short-messages.component';
+import { SharedMessagesComponent } from './projekt-navi/project-work/shared-messages/shared-messages.component';
+
+import { ProjectDocumentationComponent } from './projekt-navi/project-documentation/project-documentation.component';
+import { DocumentationComponent } from './projekt-navi/project-documentation/documentation/documentation.component';
+
+import { ProjectScheduleComponent } from './projekt-navi/project-schedule/project-schedule.component';
+import { SchedulePComponent } from './projekt-navi/project-schedule/schedule/schedule.component';
+
 
 const routes: Routes = [
   { path: 'logging', component: LoggingTimeComponent },
@@ -28,9 +40,30 @@ const routes: Routes = [
           { path: 'SentMessages', component: SentMessagesComponent },
           { path: 'ReceivedMessages', component: AllMessagesComponent },
           { path: 'NewMessage', component: NewMessageComponent },
-          { path: 'OneMessage', component: OneMessageComponent, children: [{ path: 'reply', component: ReplyEditorComponent}] },
+          { path: 'OneMessage', component: OneMessageComponent, children: [{ path: 'reply', component: ReplyEditorComponent }] },
           { path: 'PinMessages', component: PinMessagesComponent },
           { path: 'CustomMessages', component: CustomMessagesComponent },
+        ]
+      },
+      {
+        path: 'project-work', component: ProjectWorkComponent,
+        children: [
+          { path: 'messages', component: SharedMessagesComponent },
+          { path: 'tasks', component: TasksComponent },
+          { path: 'schedule', component: ScheduleComponent },
+          { path: 'shortmg', component: ShortMessagesComponent },
+        ]
+      },
+      {
+        path: 'project-doc', component: ProjectDocumentationComponent,
+        children: [
+          { path: 'documentation', component: DocumentationComponent }
+          ]
+      },
+      {
+        path: 'project-schedule', component: ProjectScheduleComponent,
+        children: [
+          { path: 'schedule', component: SchedulePComponent }
         ]
       }
     ]}

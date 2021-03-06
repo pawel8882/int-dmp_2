@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
+import { DisplayMessage } from 'src/app/_class/Messeges/DidsplayMessages';
 import { PaginatorFilterClass } from '.././projekt-navi/messages/paginator/PaginatorFilterClass';
 
 @Injectable({
@@ -9,20 +10,20 @@ export class DataService {
 
   constructor() { }
 
-  /*START: MESSAGE ID DATA*/
+  /*START: MESSAGE DATA*/
 
-  public messageId: number = 0;
-  public subject = new Subject<any>();
-  private messageIdSource = new BehaviorSubject(this.messageId);
-  currentMessageId = this.messageIdSource.asObservable();
+  public messageData!: DisplayMessage;
+  public subject = new Subject<DisplayMessage>();
+  private messageIdSource = new BehaviorSubject(this.messageData);
+  currentMessageData = this.messageIdSource.asObservable();
 
-  changeMessageId(id: number) {
+  changeMessageData(messageData: DisplayMessage) {
 
-    this.messageIdSource.next(id);
+    this.messageIdSource.next(messageData);
 
   }
 
-/*END: MESSAGE ID DATA*/
+/*END: MESSAGE DATA*/
 
 /*START: PAGINATOR DATA*/
 

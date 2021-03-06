@@ -1,19 +1,22 @@
+
+<app-paginator (newPaginator)="filterMessages($event)" [totalMessages]="totalMessages"></app-paginator>
+
 <div class="card">
-  <p-table [value]="messages" selectionMode="single" [(selection)]="selectedMessage" dataKey="id" styleClass="p-datatable-sm">
+  <p-table [value]="ReceivedMessages" selectionMode="single" [(selection)]="selectedMessage" styleClass="p-datatable-sm" (onRowSelect)="onRowSelect($event)">
     <ng-template pTemplate="header">
       <tr>
-        <th>Od</th>
+        <th>Od (Ostatnia odpowiedź)</th>
         <th>Tytuł</th>
         <th>Data</th>
-        <th>aaaaaaaaaaaa</th>
+        <th>Kategoria</th>
       </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-message>
-      <tr [pSelectableRow]="message">
-        <td></td>
-        <td>{{message.title}}</td>
-        <td>{{message.addingDate}}</td>
-        <td>{{message.id}}</td>
+    <ng-template pTemplate="body" let-ReceivedMessage>
+      <tr [pSelectableRow]="ReceivedMessage">
+        <td><span *ngFor="let person of ReceivedMessage.toPersons" [ngClass]="ReceivedMessage.opened == false ? 'opened' : 'unopened'">{{person.personName}}</span> </td>
+        <td><span [ngClass]="ReceivedMessage.opened == false ? 'opened' : 'unopened'">{{ReceivedMessage.title}}</span></td>
+        <td><span [ngClass]="ReceivedMessage.opened == false ? 'opened' : 'unopened'">{{ReceivedMessage.timestamp}}</span></td>
+        <td><span [ngClass]="ReceivedMessage.opened == false ? 'opened' : 'unopened'">{{ReceivedMessage.category.category}}<i *ngIf="ReceivedMessage.pinned == true" class="pi pi-tag pinned"></i></span></td>
       </tr>
     </ng-template>
   </p-table>

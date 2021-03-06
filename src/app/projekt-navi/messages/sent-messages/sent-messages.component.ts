@@ -29,18 +29,21 @@ export class SentMessagesComponent implements OnInit {
 
   SentMessages: DisplayMessage[] = [];
   selectedMessage!: DisplayMessage;
+  totalMessages!: number;
 
   getReceivedMessages(user: string, openP: string, paginator: PaginatorFilterClass): void {
     var sub = new Subject<ParamDisplayMessages>();
     sub.subscribe(
       { next: (mg => this.SentMessages = mg.messages) });
+    sub.subscribe(
+      { next: (mg => this.totalMessages = mg.messagesNumber) });
 
 
     this.mgService.getSentMessages(user, Number(openP), paginator).subscribe(sub);
   }
 
   onRowSelect(event: any) {
-    this.dataService.changeMessageId(event.data.messageId);
+    this.dataService.changeMessageData(event.data);
     this.router.navigate(['OneMessage'], { relativeTo: this.route.parent });
   }
 

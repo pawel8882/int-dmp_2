@@ -14,6 +14,7 @@ import { ButtonModule } from 'primeng/button';
 import { ProjektNaviComponent } from './projekt-navi/projekt-navi.component';
 import { ToolbarModule } from 'primeng/toolbar';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatIconModule } from '@angular/material/icon'; 
 
 import { SlideMenuModule } from 'primeng/slidemenu';
 import { InputTextModule } from 'primeng/inputtext';
@@ -30,6 +31,7 @@ import { InplaceModule } from 'primeng/inplace';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { DropdownModule } from 'primeng/dropdown';
 import { MultiSelectModule } from 'primeng/multiselect';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
 
 
 import { PanelMenuModule } from 'primeng/panelmenu';
@@ -45,6 +47,16 @@ import { OneMessageComponent } from './projekt-navi/messages/one-message/one-mes
 import { LoggingTimeComponent } from './logging-time/logging-time.component';
 import { ReplyEditorComponent } from './projekt-navi/messages/one-message/reply-editor/reply-editor.component';
 import { PaginatorComponent } from './projekt-navi/messages/paginator/paginator.component';
+import { ProjectWorkComponent } from './projekt-navi/project-work/project-work.component';
+
+import { ProjectWorkService } from 'src/app/_services/SharedServices/project-work.service';
+import { SharedMessagesComponent } from './projekt-navi/project-work/shared-messages/shared-messages.component';
+import { TasksComponent } from './projekt-navi/project-work/tasks/tasks.component';
+import { ScheduleComponent } from './projekt-navi/project-work/schedule/schedule.component';
+import { ShortMessagesComponent } from './projekt-navi/project-work/short-messages/short-messages.component';
+import { ProjectDocumentationComponent } from './projekt-navi/project-documentation/project-documentation.component';
+import { DocumentationComponent } from './projekt-navi/project-documentation/documentation/documentation.component';
+import { ProjectScheduleComponent } from './projekt-navi/project-schedule/project-schedule.component';
 
 
 
@@ -63,7 +75,15 @@ import { PaginatorComponent } from './projekt-navi/messages/paginator/paginator.
     OneMessageComponent,
     LoggingTimeComponent,
     ReplyEditorComponent,
-    PaginatorComponent
+    PaginatorComponent,
+    ProjectWorkComponent,
+    SharedMessagesComponent,
+    TasksComponent,
+    ScheduleComponent,
+    ShortMessagesComponent,
+    ProjectDocumentationComponent,
+    DocumentationComponent,
+    ProjectScheduleComponent
 
   ],
   imports: [
@@ -94,7 +114,9 @@ import { PaginatorComponent } from './projekt-navi/messages/paginator/paginator.
     ProgressSpinnerModule,
     MatPaginatorModule,
     DropdownModule,
-    MultiSelectModule
+    MultiSelectModule,
+    MatIconModule,
+    OverlayPanelModule
   ],
   providers: [],
   bootstrap: [AppComponent]

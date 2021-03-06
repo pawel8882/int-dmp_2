@@ -4,7 +4,7 @@
       <input pInputText type="text" placeholder="Search (In Titles)" [(ngModel)]="searchText" (ngModelChange)="setNewSearchText(searchText)">
     </span>
     <span class="categories">
-      <p-multiSelect class="CategoriesChipsCustom" [options]="categories" [(ngModel)]="selectedCategories" (ngModelChange)="setNewSearchCategories(selectedCategories)" optionLabel="category" display="chip" defaultLabel="Select Categories"></p-multiSelect>
+      <p-multiSelect [options]="categories" [(ngModel)]="selectedCategories" (ngModelChange)="setNewSearchCategories(selectedCategories)" optionLabel="category" display="chip" defaultLabel="Select Categories"></p-multiSelect>
     </span>
   <span>
     <mat-paginator [length]="totalMessages"

@@ -7,6 +7,9 @@ export interface DetailedMessage {
   header: string;
   message: Message;
   owner: SuggestPerson;
+  type: string;
+  id: number;
+  pinned: boolean;
 
   toPersons: SuggestPerson[];
   dwPersons: SuggestPerson[];

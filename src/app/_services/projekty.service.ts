@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of, throwError, Subject } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { Project } from 'src/app/_class/Project';
-import { Department } from 'src/app/_class/Department';
+import { SectionDepartments } from 'src/app/_class/Departments/SectionDepartments';
 import { CookieService } from 'ngx-cookie-service';
 import { HttpParams } from "@angular/common/http";
 import { LoginService } from 'src/app/_services/login.service';
@@ -35,13 +35,14 @@ export class ProjektyService {
 
   }
 
-  getDepartments(id: number): Observable<Department[]> {
+  getDepartments(id: number, user: string): Observable<SectionDepartments[]> {
 
     const url = `${this.url}/${id}/departments`;
-    return this.http.get<Department[]>(url, this.httpToken)
+    var params = { headers: this.httpToken.headers, params: new HttpParams().set('user', user) };
+    return this.http.get<SectionDepartments[]>(url, params)
       .pipe(
         tap(_ => console.log('Pobrano dane')),
-        catchError(this.handleError<Department[]>('getProjekty', [])));
+        catchError(this.handleError<SectionDepartments[]>('getProjekty', [])));
 
   }
 

@@ -1,19 +1,41 @@
 <p-toolbar>
   <div class="p-toolbar-group-left">
-    <div class="p-text-bold">{{ProjectHeader?.name}} - {{ProjectHeader?.number}}</div>
+    <div class="p-text-bold">
+      <p-button label="{{ProjectHeader?.name}} - {{ProjectHeader?.number}}" [disabled]=true styleClass="p-button-link"></p-button><p-button label="/" [disabled]=true styleClass="p-button-link"></p-button>
+      <p-button label="{{selectedButton}}" [disabled]=true styleClass="p-button-link"></p-button>
+      <span *ngIf="optionButton">
+  <p-button label="/" [disabled]=true styleClass="p-button-link"></p-button>
+  <p-button label="{{selectedSection?.section}}" styleClass="p-button-link" (onClick)="changeSection.toggle($event)"></p-button><p-button label="/" [disabled]=true styleClass="p-button-link"></p-button>
+  <p-button label="{{selectedDepartment?.name}}" styleClass="p-button-link" (onClick)="changeDepartment.toggle($event)"></p-button>
+      </span>
+    </div>
   </div>
   <div class="p-toolbar-group-right">
 
+    <p-overlayPanel #changeSection>
+      <div *ngFor="let section of sectionDepartment_list">
+        <p-button label="{{section.section}}" styleClass="p-button-link" (onClick)="changeSection.hide(); changeSelectedSection(section)"></p-button>
+      </div>
+    </p-overlayPanel>
 
-   <button *ngFor="let department of department_list" pButton pRipple type="button" label={{department.name}} class="p-button-text" (click)="setHeaderBranza(department.id)"></button>
+    <p-overlayPanel #changeDepartment>
+      <div *ngFor="let department of department_list">
+        <p-button label="{{department.name}}" styleClass="p-button-link" (onClick)="changeDepartment.hide(); changeSelectedDepartment(department)"></p-button>
+      </div>
+    </p-overlayPanel>
+
+
+    <button pButton pRipple type="button" label="Projektowanie" class="p-button-text" (click)="OpenLink('project-work'); setProjectWork()"></button>
+    <button pButton pRipple type="button" label="Dokumentacja" class="p-button-text" (click)="OpenLink('project-doc'); setProjectDocumentation()"></button>
+    <button pButton pRipple type="button" label="Harmonogram/terminy" class="p-button-text" (click)="OpenLink('project-schedule'); setProjectSchedule()"></button>
 
 
 
-    <button pButton pRipple type="button" icon={{ikonka}} class="p-button-text" (click)="add_department = !add_department;ikonka_change()"></button>
-    <div *ngIf="add_department">
-      <input type="text" pInputText />
-      <button label="Dodaj" pButton type="button" icon="pi pi-check" iconPos="left" class="size" (click)="add_department = !add_department;ikonka_change()"></button>
-    </div>
+    <!--<button pButton pRipple type="button" icon={{ikonka}} class="p-button-text" (click)="add_department = !add_department;ikonka_change()"></button>
+  <div *ngIf="add_department">
+    <input type="text" pInputText />
+    <button label="Dodaj" pButton type="button" icon="pi pi-check" iconPos="left" class="size" (click)="add_department = !add_department;ikonka_change()"></button>
+  </div>-->
   </div>
 </p-toolbar>
 

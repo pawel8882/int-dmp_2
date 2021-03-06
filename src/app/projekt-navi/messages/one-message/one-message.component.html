@@ -1,11 +1,11 @@
 
-<div *ngIf="messageId==0">Brak wybranej wiadomości</div>
-<div *ngIf="messageId>0" class="p-grid p-flex-column">
+<div *ngIf="messageData == undefined">Brak wybranej wiadomości</div>
+<div *ngIf="messageData != undefined" class="p-grid p-flex-column">
   <div class="p-col">
     <div class="box">
-      <span><button pButton type="button" icon="pi pi-caret-left" label="Wstecz" class="p-button-text p-button-success"></button></span>
-      <span><button pButton type="button" icon="pi pi-tag" label="Przypnij wiadomość" class="p-button-text p-button-success"></button></span>
-      <span><button pButton type="button" icon="pi pi-flag" label="Przypisz kategorię" class="p-button-text p-button-success"></button></span>
+      <span><button pButton type="button" icon="pi pi-caret-left" label="Wstecz" class="p-button-text p-button-success" (click)="backClick()"></button></span>
+      <span><button pButton type="button" icon="{{pinnedButtonIcon}}" label="{{pinnedButtonText}}" class="p-button-text p-button-success" (click)="changePinned(detailedMessage.pinned)"></button></span>
+      <span><button pButton type="button" icon="pi pi-flag" label="Zmień kategorię" class="p-button-text p-button-success"></button></span>
       <span><button pButton type="button" icon="pi pi-reply" label="Odpowiedz" class="p-button-text p-button-success" (click)="OpenLink('reply')"></button></span>
     </div>
   </div>
@@ -36,12 +36,12 @@
     </div>
   </div>
 </div>
-<div *ngIf="messageId>0" class="messages">
+<div *ngIf="messageData != undefined" class="messages">
   <div class="p-grid p-flex-column">
     <div class="p-col" *ngFor="let reply of detailedMessage.message.replyMessages; let i=index">
         <p-panel>
           <ng-template pTemplate="header">
-            <span class="fromUser">{{reply.owner.personName}}</span><span class="fromDate">{{reply.timestamp}}</span>
+            <span class="fromUser">{{reply.owner.personName}}</span><span class="fromDate">{{reply.timestamp | date: 'dd.MM.YYY HH:mm'}}</span>
           </ng-template>
           <div id="messageContent{{i}}"></div>
         </p-panel>
@@ -49,7 +49,7 @@
     <div class="p-col">
       <p-panel>
         <ng-template pTemplate="header">
-          <span class="fromUser">{{detailedMessage.owner.personName}}</span><span class="fromDate">{{detailedMessage.message.timestamp}}</span>
+          <span class="fromUser">{{detailedMessage.owner.personName}}</span><span class="fromDate">{{detailedMessage.message.timestamp | date: 'dd.MM.YYY HH:mm'}}</span>
         </ng-template>
         <div id="messageContent"></div>
       </p-panel>

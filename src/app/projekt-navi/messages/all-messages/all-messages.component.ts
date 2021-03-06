@@ -42,7 +42,7 @@ export class AllMessagesComponent implements OnInit {
   }
 
   onRowSelect(event: any) {
-    this.dataService.changeMessageId(event.data.messageId);
+    this.dataService.changeMessageData(event.data);
     this.router.navigate(['OneMessage'], { relativeTo: this.route.parent });
   }
 

@@ -18,6 +18,9 @@ import { Header } from '../../../_class/Messeges/Header';
 import { message_list } from 'src/app/data/message_list';
 import { MessageInList } from 'src/app/_class/Messeges/MessegeInList';
 import { DetailedMessage } from 'src/app/_class/Messeges/DetailedMessage';
+import { DisplayMessage } from '../../../_class/Messeges/DidsplayMessages';
+import { UpdateMessage } from 'src/app/_class/Messeges/UpdateMessage';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-one-message',
@@ -29,25 +32,26 @@ export class OneMessageComponent implements OnInit {
 
   @ViewChild(Editor) editor!: Editor;
 
-  constructor(private mgService: MessagesService, private Cookie: CookieService, private messageService: MessageService, private router: Router, private route: ActivatedRoute, private dataService: DataService) { }
+  constructor(private mgService: MessagesService, private Cookie: CookieService, private messageService: MessageService, private router: Router,
+    private route: ActivatedRoute, private dataService: DataService, private location: Location) { }
 
   ngOnInit(): void {
 
-    this.dataService.currentMessageId.subscribe(data => this.messageId = data);
-    this.getDetailedMessage(this.messageId, this.Cookie.get("user_name"));
-    console.log(this.messageId);
+    this.dataService.currentMessageData.subscribe(data => this.loadInitialData(data));
 
   }
 
   ngAfterViewInit(): void {
 
-    var editor = new Quill('#messageContent', this.options);
-    editor.setContents(this.detailedMessage.message.content);
-    this.loadContent();
+    if (!this.detailedMessage == undefined) {
+      var editor = new Quill('#messageContent', this.options);
+      editor.setContents(this.detailedMessage.message.content);
+      this.loadContent();
+    }
    
   }
 
-  messageId!: number;
+  messageData!: DisplayMessage;
 
   textEditor!: Quill;
 
@@ -57,14 +61,30 @@ export class OneMessageComponent implements OnInit {
 
   options = { readOnly: true, theme: 'bubble' };
 
+  pinnedButtonText!: string;
+
+  pinnedButtonIcon!: string;
+
   OpenLink(link: string) {
       this.router.navigate([link], { relativeTo: this.route });
   }
 
-  getDetailedMessage(messageId : number, user: string): void {
+  getDetailedMessage(messageId: number, user: string, id: number, character: string): void {
 
-    this.mgService.getDetailedMessage(messageId, user).subscribe(data => this.detailedMessage = this.mgService.parseDelta(data));
+      var sub = new Subject<DetailedMessage>();
+      sub.subscribe(
+        { next: (mg => this.detailedMessage = this.mgService.parseDelta(mg)) });
+      sub.subscribe(
+        { next: (mg => this.checkPinned(mg.pinned)) });
 
+    this.mgService.getDetailedMessage(messageId, user, id, character).subscribe(sub);
+
+  }
+
+  checkPinned(pinned: boolean): void {
+    if (pinned == true) { this.pinnedButtonText = 'Odepnij wiadomość'; this.pinnedButtonIcon = 'pi pi-times'}
+    if (pinned == false) { this.pinnedButtonText = 'Przypnij wiadomość'; this.pinnedButtonIcon = 'pi pi-tag' }
+    this.detailedMessage.pinned = pinned;
   }
 
   loadContent(): void {
@@ -74,6 +94,29 @@ export class OneMessageComponent implements OnInit {
       var editor = new Quill('#messageContent' + String(i), this.options);
       Object.assign(editors, { i: editor.setContents(this.detailedMessage.message.replyMessages[i].content) });
     }
+  }
+
+  changePinned(pinned: boolean) {
+
+    var updateMessage: UpdateMessage = {
+      messageId: this.messageData.messageId, type: this.detailedMessage.type,
+      id: this.detailedMessage.id, pinned: this.detailedMessage.pinned,
+    }
+    if (pinned == true) { updateMessage.pinned = false;}
+    if (pinned == false) { updateMessage.pinned = true; }
+    this.mgService.setPinned(updateMessage.messageId, this.Cookie.get('user_name'), updateMessage)
+      .subscribe(data => this.checkPinned(data));
+  }
+
+  backClick() {
+    this.location.back();
+  }
+
+  loadInitialData(data: DisplayMessage) {
+
+    this.messageData = data;
+    this.getDetailedMessage(data.messageId, this.Cookie.get("user_name"), this.messageData.id, this.messageData.type);
+
   }
 
 }
