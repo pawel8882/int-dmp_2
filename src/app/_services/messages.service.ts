@@ -39,9 +39,9 @@ export class MessagesService {
 
   }
 
-  getReceivedPinnedMessages(user: string, projectId: number, paginator: PaginatorFilterClass): Observable<ParamDisplayMessages> {
+  getPinnedMessages(user: string, projectId: number, paginator: PaginatorFilterClass): Observable<ParamDisplayMessages> {
     var params = { headers: this.httpToken.headers, params: new HttpParams().set('user', user) };
-    return this.http.post<ParamDisplayMessages>(this.url + `/${projectId}/` + "receivedpinned", paginator, params)
+    return this.http.post<ParamDisplayMessages>(this.url + `/${projectId}/` + "pinned", paginator, params)
       .pipe(
         tap(_ => console.log('Pobrano odebrane wiadomości.')),
         catchError(this.handleError<ParamDisplayMessages>('Error',)));
@@ -57,15 +57,6 @@ export class MessagesService {
 
   }
 
-
-  getSentPinnedMessages(user: string, projectId: number, paginator: PaginatorFilterClass): Observable<ParamDisplayMessages> {
-    var params = { headers: this.httpToken.headers, params: new HttpParams().set('user', user) };
-    return this.http.post<ParamDisplayMessages>(this.url + `/${projectId}/` + "sentpinned", paginator, params)
-      .pipe(
-        tap(_ => console.log('Pobrano wysłane wiadomości.')),
-        catchError(this.handleError<ParamDisplayMessages>('Error',)));
-
-  }
 
   getSuggestPersons(projectId: number, text: string): Observable<SuggestPerson[]> {
     var params = { headers: this.httpToken.headers, params: new HttpParams().set('user', text) };

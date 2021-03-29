@@ -1,0 +1,7 @@
+
+  <p-panel>
+    <ng-template pTemplate="header">
+      <span class="fromUser">{{MessageDetail?.owner}}</span><span class="fromDate">{{MessageDetail?.timestamp | date: 'dd.MM.YYY HH:mm'}}</span>
+    </ng-template>
+    <div id="{{'messageContent' + ContentNumber}}"></div>
+  </p-panel>

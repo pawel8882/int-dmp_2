@@ -15,7 +15,7 @@
       <tr [pSelectableRow]="ReceivedMessage">
         <td><span *ngFor="let person of ReceivedMessage.toPersons" [ngClass]="ReceivedMessage.opened == false ? 'opened' : 'unopened'">{{person.personName}}</span> </td>
         <td><span [ngClass]="ReceivedMessage.opened == false ? 'opened' : 'unopened'">{{ReceivedMessage.title}}</span></td>
-        <td><span [ngClass]="ReceivedMessage.opened == false ? 'opened' : 'unopened'">{{ReceivedMessage.timestamp}}</span></td>
+        <td><span [ngClass]="ReceivedMessage.opened == false ? 'opened' : 'unopened'">{{ReceivedMessage.timestamp | date: 'dd.MM.YYY HH:mm'}}</span></td>
         <td><span [ngClass]="ReceivedMessage.opened == false ? 'opened' : 'unopened'">{{ReceivedMessage.category.category}}<i *ngIf="ReceivedMessage.pinned == true" class="pi pi-tag pinned"></i></span></td>
       </tr>
     </ng-template>

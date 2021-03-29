@@ -37,7 +37,7 @@ export class PinMessagesComponent implements OnInit {
     sub.subscribe(
       { next: (mg => this.totalMessages = mg.messagesNumber) });
 
-    this.mgService.getReceivedPinnedMessages(user, Number(openP), paginator).subscribe(sub);
+    this.mgService.getPinnedMessages(user, Number(openP), paginator).subscribe(sub);
   }
 
   onRowSelect(event: any) {

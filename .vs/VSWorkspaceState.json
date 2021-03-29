@@ -5,12 +5,10 @@
     "\\src\\app",
     "\\src\\app\\projekt-navi",
     "\\src\\app\\projekt-navi\\messages",
-    "\\src\\app\\projekt-navi\\messages\\sent-messages",
-    "\\src\\app\\projekt-navi\\project-work\\shared-messages",
+    "\\src\\app\\projekt-navi\\messages\\pin-messages",
     "\\src\\app\\_class",
-    "\\src\\app\\_class\\Departments",
     "\\src\\app\\_class\\Messeges"
   ],
-  "SelectedNode": "\\src\\app\\projekt-navi\\projekt-navi.component.html",
+  "SelectedNode": "\\src\\app\\projekt-navi\\messages\\pin-messages\\pin-messages.component.ts",
   "PreviewInSolutionExplorer": false
 }

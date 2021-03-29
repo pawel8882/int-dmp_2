@@ -12,6 +12,7 @@ import { PinMessagesComponent } from './projekt-navi/messages/pin-messages/pin-m
 import { CustomMessagesComponent } from './projekt-navi/messages/custom-messages/custom-messages.component';
 import { LoggingTimeComponent } from './logging-time/logging-time.component';
 import { ReplyEditorComponent } from './projekt-navi/messages/one-message/reply-editor/reply-editor.component';
+import { MessageDetailComponent } from './projekt-navi/messages/one-message/message-detail/message-detail.component';
 
 import { ProjectWorkComponent } from './projekt-navi/project-work/project-work.component';
 import { TasksComponent } from './projekt-navi/project-work/tasks/tasks.component';
@@ -24,6 +25,8 @@ import { DocumentationComponent } from './projekt-navi/project-documentation/doc
 
 import { ProjectScheduleComponent } from './projekt-navi/project-schedule/project-schedule.component';
 import { SchedulePComponent } from './projekt-navi/project-schedule/schedule/schedule.component';
+
+import { PersonalCalendarComponent } from './projekt-navi/personal-calendar/personal-calendar.component';
 
 
 const routes: Routes = [
@@ -40,7 +43,7 @@ const routes: Routes = [
           { path: 'SentMessages', component: SentMessagesComponent },
           { path: 'ReceivedMessages', component: AllMessagesComponent },
           { path: 'NewMessage', component: NewMessageComponent },
-          { path: 'OneMessage', component: OneMessageComponent, children: [{ path: 'reply', component: ReplyEditorComponent }] },
+          { path: 'OneMessage', component: OneMessageComponent, children: [{ path: 'reply', component: ReplyEditorComponent }, {path: 'content', component: MessageDetailComponent}] },
           { path: 'PinMessages', component: PinMessagesComponent },
           { path: 'CustomMessages', component: CustomMessagesComponent },
         ]
@@ -65,6 +68,9 @@ const routes: Routes = [
         children: [
           { path: 'schedule', component: SchedulePComponent }
         ]
+      },
+      {
+        path: 'personalCalendar', component: PersonalCalendarComponent,
       }
     ]}
 

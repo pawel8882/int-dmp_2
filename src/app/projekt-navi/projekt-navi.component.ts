@@ -68,7 +68,7 @@ export class ProjektNaviComponent implements OnInit {
 
   setProjectDocumentation() {
 
-    this.menu_lewe = MenuItemDocumentation
+    this.menu_lewe = MenuItemDocumentation;
     this.getProjectHeader(Number(this.Cookie.get("opened_project")));
     this.selectedButton = 'Dokumentacja';
     this.optionButton = false;
@@ -77,7 +77,7 @@ export class ProjektNaviComponent implements OnInit {
 
   setProjectSchedule() {
 
-    this.menu_lewe = MenuItemProjectSchedule
+    this.menu_lewe = MenuItemProjectSchedule;
     this.getProjectHeader(Number(this.Cookie.get("opened_project")));
     this.selectedButton = 'Harmonogram';
     this.optionButton = false;

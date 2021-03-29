@@ -1,6 +1,6 @@
 
 <div *ngIf="messageData == undefined">Brak wybranej wiadomości</div>
-<div *ngIf="messageData != undefined" class="p-grid p-flex-column">
+<div *ngIf="detailedMessage != undefined" class="p-grid p-flex-column">
   <div class="p-col">
     <div class="box">
       <span><button pButton type="button" icon="pi pi-caret-left" label="Wstecz" class="p-button-text p-button-success" (click)="backClick()"></button></span>
@@ -36,23 +36,10 @@
     </div>
   </div>
 </div>
-<div *ngIf="messageData != undefined" class="messages">
+<div *ngIf="detailedMessage != undefined" class="messages">
   <div class="p-grid p-flex-column">
-    <div class="p-col" *ngFor="let reply of detailedMessage.message.replyMessages; let i=index">
-        <p-panel>
-          <ng-template pTemplate="header">
-            <span class="fromUser">{{reply.owner.personName}}</span><span class="fromDate">{{reply.timestamp | date: 'dd.MM.YYY HH:mm'}}</span>
-          </ng-template>
-          <div id="messageContent{{i}}"></div>
-        </p-panel>
-    </div>
-    <div class="p-col">
-      <p-panel>
-        <ng-template pTemplate="header">
-          <span class="fromUser">{{detailedMessage.owner.personName}}</span><span class="fromDate">{{detailedMessage.message.timestamp | date: 'dd.MM.YYY HH:mm'}}</span>
-        </ng-template>
-        <div id="messageContent"></div>
-      </p-panel>
+    <div class="p-col" *ngFor="let displayContent of MessageToDisplay; let i=index">
+      <app-message-detail [MessageDetail]="displayContent" [ContentNumber]="i"></app-message-detail>
     </div>
   </div>
 </div>

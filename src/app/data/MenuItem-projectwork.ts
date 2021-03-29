@@ -17,7 +17,7 @@ export const MenuItemProjectWork: MenuItem[] = [
     routerLink: ["project-work/tasks"]
   },
   {
-    label: "Harmonogram",
+    label: "Terminy/Harmonogram",
     icon: "pi pi-clock",
     routerLink: ["project-work/schedule"]
   }

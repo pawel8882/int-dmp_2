@@ -57,6 +57,8 @@ import { ShortMessagesComponent } from './projekt-navi/project-work/short-messag
 import { ProjectDocumentationComponent } from './projekt-navi/project-documentation/project-documentation.component';
 import { DocumentationComponent } from './projekt-navi/project-documentation/documentation/documentation.component';
 import { ProjectScheduleComponent } from './projekt-navi/project-schedule/project-schedule.component';
+import { PersonalCalendarComponent } from './projekt-navi/personal-calendar/personal-calendar.component';
+import { MessageDetailComponent } from './projekt-navi/messages/one-message/message-detail/message-detail.component';
 
 
 
@@ -83,7 +85,9 @@ import { ProjectScheduleComponent } from './projekt-navi/project-schedule/projec
     ShortMessagesComponent,
     ProjectDocumentationComponent,
     DocumentationComponent,
-    ProjectScheduleComponent
+    ProjectScheduleComponent,
+    PersonalCalendarComponent,
+    MessageDetailComponent
 
   ],
   imports: [

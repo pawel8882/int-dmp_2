@@ -1,0 +1,55 @@
+.nadawcy {
+  position: relative;
+  top: 10px;
+  width: inherit;
+}
+
+.p-inputgroup-addon {
+  width: 50px;
+}
+
+
+.odbiorcy_dw {
+  position: relative;
+  top: 30px;
+}
+
+.odbiorcy_do {
+  position: relative;
+  top: 20px;
+}
+
+.text {
+  position: relative;
+  top: 50px;
+  width: inherit;
+}
+
+.card {
+  position: relative;
+  top: 50px;
+  width: inherit;
+}
+
+.fromUser {
+  font-size: 14px;
+  font-weight: bold;
+  margin-right: auto;
+}
+
+.fromDate {
+  font-size: 12px;
+  font-weight: bold;
+  font-style: italic;
+  margin-left: auto;
+}
+
+.messageTitle {
+  font-size: 18px;
+  font-weight: bolder;
+}
+
+.messages {
+  position: relative;
+  top: 30px;
+}

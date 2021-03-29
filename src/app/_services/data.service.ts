@@ -15,7 +15,7 @@ export class DataService {
   public messageData!: DisplayMessage;
   public subject = new Subject<DisplayMessage>();
   private messageIdSource = new BehaviorSubject(this.messageData);
-  currentMessageData = this.messageIdSource.asObservable();
+  currentMessageData = this.messageIdSource;
 
   changeMessageData(messageData: DisplayMessage) {
 
