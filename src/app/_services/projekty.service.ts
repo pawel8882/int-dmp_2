@@ -24,7 +24,7 @@ export class ProjektyService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
-  httpToken = { headers: new HttpHeaders({ 'Content-type': 'application/x-www-form-urlencoded; charset=utf-8', 'Authorization': 'Bearer ' + this.Cookie.get('access_token')})};
+  httpToken = { headers: new HttpHeaders({ 'Content-type': 'application/json; charset=utf-8', 'Authorization': 'Bearer ' + this.Cookie.get('access_token') }) };
 
   getProjekty(user: string): Observable<Project[]> {
     var params = {headers: this.httpToken.headers, params: new HttpParams().set('user', user) }
@@ -64,8 +64,9 @@ export class ProjektyService {
       catchError(this.handleError<any>('updateProjekt')))
   }
 
-  addProjekt(projekt: Project): Observable<Project> {
-    return this.http.post<Project>(this.url, projekt, this.httpOptions).pipe(
+  addProjekt(projekt: Project, user: string): Observable<Project> {
+    var params = { headers: this.httpToken.headers, params: new HttpParams().set('user', user) };
+    return this.http.post<Project>(this.url, projekt, params).pipe(
       tap((newProjekt: Project) => console.log(`added projekt w/ id=${newProjekt.id}`)),
       catchError(this.handleError<Project>('addProjekt'))
     );

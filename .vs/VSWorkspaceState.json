@@ -3,12 +3,14 @@
     "",
     "\\src",
     "\\src\\app",
+    "\\src\\app\\projects-list",
     "\\src\\app\\projekt-navi",
     "\\src\\app\\projekt-navi\\messages",
-    "\\src\\app\\projekt-navi\\messages\\pin-messages",
-    "\\src\\app\\_class",
-    "\\src\\app\\_class\\Messeges"
+    "\\src\\app\\projekt-navi\\messages\\all-messages",
+    "\\src\\app\\projekt-navi\\messages\\one-message",
+    "\\src\\app\\projekt-navi\\messages\\sent-messages",
+    "\\src\\app\\_class"
   ],
-  "SelectedNode": "\\src\\app\\projekt-navi\\messages\\pin-messages\\pin-messages.component.ts",
+  "SelectedNode": "\\src\\app\\projekt-navi\\messages\\one-message\\one-message.component.ts",
   "PreviewInSolutionExplorer": false
 }

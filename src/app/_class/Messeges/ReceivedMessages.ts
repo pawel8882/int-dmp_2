@@ -1,8 +1,9 @@
 import { DataMessages } from './DataMessages';
+import { MessageType } from './_enum/MessageType';
 
 export interface ReceivedMessages {
   id: number;
-  type: string;
+  messageType: MessageType;
   category: string;
   opened: boolean;
 

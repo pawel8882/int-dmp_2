@@ -64,7 +64,7 @@ export class ProjectsListComponent implements OnInit {
     if (!name) { return; }
     if (!number) { return; }
     const complete = false;
-    this.projektservice.addProjekt({ name, number, complete } as Project)
+    this.projektservice.addProjekt({ name, number, complete } as Project, this.Cookie.get("user_name"))
       .subscribe(_projekt => {
         this.showProjekt();
       })

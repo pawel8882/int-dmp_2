@@ -1,8 +1,9 @@
+import { MessageType } from './_enum/MessageType';
 
 export interface UpdateMessage {
 
   messageId: number;
-  type: string;
+  messageType: MessageType;
   id: number;
   pinned: boolean;
 

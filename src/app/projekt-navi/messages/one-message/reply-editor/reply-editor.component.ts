@@ -12,8 +12,7 @@ import { DataService } from 'src/app/_services/data.service';
 import { Quill } from 'quill';
 import Delta from 'quill-delta';
 import { Editor } from "primeng/editor";
-import { Message } from '../../../../_class/Messeges/Message';
-import { Header } from '../../../../_class/Messeges/Header';
+import { MessageType } from 'src/app/_class/Messeges/_enum/MessageType';
 import { DisplayMessage } from '../../../../_class/Messeges/DidsplayMessages';
 
 @Component({
@@ -62,7 +61,7 @@ export class ReplyEditorComponent implements OnInit {
       message.toPersons = this.messageData.toPersons;
       message.dwPersons = this.messageData.dwPersons;
 
-      this.mgService.sentReplyMessage(this.messageData.messageId, this.Cookie.get("user_name"), message, delta, this.messageData.id, this.messageData.type)
+      this.mgService.sentReplyMessage(this.messageData.messageId, this.Cookie.get("user_name"), message, delta, this.messageData.id, this.messageData.messageType)
         .subscribe(data => { this.messagePOP('success', 'Wysłano wiadomość', ''), this.cleanMessage() }, error => this.messagePOP('warn', 'Błąd', ''));
     }
   }

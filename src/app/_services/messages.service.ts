@@ -13,6 +13,7 @@ import { DisplayMessage } from 'src/app/_class/Messeges/DidsplayMessages';
 import { ParamDisplayMessages } from 'src/app/_class/Messeges/ParamDisplayMessages';
 import { Category } from 'src/app/_class/Messeges/Category';
 import { UpdateMessage } from 'src/app/_class/Messeges/UpdateMessage';
+import { MessageType } from 'src/app/_class/Messeges/_enum/MessageType';
 import { PaginatorFilterClass } from '../projekt-navi/messages/paginator/PaginatorFilterClass';
 import Delta from 'quill-delta';
 
@@ -87,10 +88,10 @@ export class MessagesService {
 
   }
 
-  sentReplyMessage(messageId: number, user: string, newMessage: NewMessage, delta: Delta, id: number, character: string): Observable<NewMessage> {
+  sentReplyMessage(messageId: number, user: string, newMessage: NewMessage, delta: Delta, id: number, character: MessageType): Observable<NewMessage> {
     var content = JSON.stringify(delta);
     newMessage.content = content;
-    var params = { headers: this.httpToken.headers, params: new HttpParams().set('user', user).set('id', String(id)).set('char', character) };
+    var params = { headers: this.httpToken.headers, params: new HttpParams().set('user', user).set('id', String(id)).set('char', character.toString()) };
     return this.http.post<NewMessage>(this.url + `/detailedMessage/${messageId}`, newMessage, params)
       .pipe(
         tap(_ => console.log('Message reply sent.')),
@@ -98,8 +99,8 @@ export class MessagesService {
 
   }
 
-  getDetailedMessage(messageId: number, user: string, id: number, character: string): Observable<DetailedMessage> {
-    var params = { headers: this.httpToken.headers, params: new HttpParams().set('user', user).set('id', String(id)).set('char', character) };
+  getDetailedMessage(messageId: number, user: string, id: number, character: MessageType): Observable<DetailedMessage> {
+    var params = { headers: this.httpToken.headers, params: new HttpParams().set('user', user).set('id', String(id)).set('char', character.toString()) };
     return this.http.get<DetailedMessage>(this.url + `/detailedMessage/${messageId}`, params)
       .pipe(
         tap(_ => console.log('Detailed message obtained.')),

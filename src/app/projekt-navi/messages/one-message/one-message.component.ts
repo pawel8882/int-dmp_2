@@ -15,6 +15,7 @@ import { DetailedMessage } from 'src/app/_class/Messeges/DetailedMessage';
 import { DisplayMessage } from '../../../_class/Messeges/DidsplayMessages';
 import { UpdateMessage } from 'src/app/_class/Messeges/UpdateMessage';
 import { MessageContentDisplay } from 'src/app/_class/Messeges/MessageContentDisplay';
+import { MessageType } from 'src/app/_class/Messeges/_enum/MessageType';
 import { Location } from '@angular/common';
 
 @Component({
@@ -54,7 +55,7 @@ export class OneMessageComponent implements OnInit {
       this.router.navigate([link], { relativeTo: this.route });
   }
 
-  getDetailedMessage(messageId: number, user: string, id: number, character: string): void {
+  getDetailedMessage(messageId: number, user: string, id: number, character: MessageType): void {
 
       var sub = new Subject<DetailedMessage>();
       sub.subscribe(
@@ -97,7 +98,7 @@ export class OneMessageComponent implements OnInit {
   changePinned(pinned: boolean) {
 
     var updateMessage: UpdateMessage = {
-      messageId: this.messageData.messageId, type: this.detailedMessage.type,
+      messageId: this.messageData.messageId, messageType: this.detailedMessage.messageType,
       id: this.detailedMessage.id, pinned: this.detailedMessage.pinned,
     }
     if (pinned == true) { updateMessage.pinned = false;}
@@ -114,7 +115,7 @@ export class OneMessageComponent implements OnInit {
 
     this.messageData = this.dataService.currentMessageData.value;
     if (this.messageData != undefined) {
-      this.getDetailedMessage(this.messageData.messageId, this.Cookie.get("user_name"), this.messageData.id, this.messageData.type);
+      this.getDetailedMessage(this.messageData.messageId, this.Cookie.get("user_name"), this.messageData.id, this.messageData.messageType);
     }
   }
 

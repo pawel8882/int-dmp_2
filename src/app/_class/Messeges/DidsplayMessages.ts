@@ -1,6 +1,7 @@
 import { Timestamp } from 'rxjs';
 import { Message } from './Message';
 import { SuggestPerson } from './SuggestPerson';
+import { MessageType } from './_enum/MessageType';
 
 export interface DisplayMessage {
 
@@ -9,7 +10,7 @@ export interface DisplayMessage {
   timestamp: string;
   category: string;
   opened: boolean;
-  type: string;
+  messageType: MessageType;
   id: number;
   pinned: boolean;
 
