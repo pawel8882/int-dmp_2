@@ -22,6 +22,8 @@ import { SharedMessagesComponent } from './projekt-navi/project-work/shared-mess
 
 import { ProjectDocumentationComponent } from './projekt-navi/project-documentation/project-documentation.component';
 import { DocumentationComponent } from './projekt-navi/project-documentation/documentation/documentation.component';
+import { AddFilesComponent } from './projekt-navi/project-documentation/add-files/add-files.component';
+import { ListFilesComponent } from './projekt-navi/project-documentation/documentation/list-files/list-files.component';
 
 import { ProjectScheduleComponent } from './projekt-navi/project-schedule/project-schedule.component';
 import { SchedulePComponent } from './projekt-navi/project-schedule/schedule/schedule.component';
@@ -60,7 +62,12 @@ const routes: Routes = [
       {
         path: 'project-doc', component: ProjectDocumentationComponent,
         children: [
-          { path: 'documentation', component: DocumentationComponent }
+          {
+            path: 'documentation', component: DocumentationComponent, children: [
+              { path: 'list-files', component: ListFilesComponent },
+            ]
+          },
+          { path: 'add-files', component: AddFilesComponent },
           ]
       },
       {

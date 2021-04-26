@@ -1,0 +1,19 @@
+<div class="upload_files">
+  <span>Pliki do wczytania:</span>
+  <p-fileUpload #fileUpload name="files[]" (onSelect)="onSelect($event)"
+                [multiple]="true" [maxFileSize]="1000000" chooseLabel="Dodaj pliki" uploadLabel="Wczytaj pliki" cancelLabel="Anuluj">
+    <ng-template pTemplate="toolbar">
+
+    </ng-template>
+    <ng-template let-file pTemplate="file">
+      <div>
+        <div>{{file.name}} - {{file.size}}</div>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="content">
+      <ul *ngIf="uploadedFiles.length">
+        <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+      </ul>
+    </ng-template>
+  </p-fileUpload>
+</div>

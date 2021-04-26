@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { TreeNode } from 'primeng/api';
+import { DocumentationService } from '../../../_services/documentation.service';
+import { treeDataDemo } from '../../../data/treeDataDemo';
 
 @Component({
   selector: 'app-documentation',
@@ -7,9 +10,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DocumentationComponent implements OnInit {
 
-  constructor() { }
+  constructor(private docService: DocumentationService) { }
 
   ngOnInit(): void {
+    this.docService.getDirectories().subscribe(data => this.directories = data);
   }
+
+  directories!: TreeNode[];
+
 
 }

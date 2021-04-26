@@ -1,0 +1,14 @@
+.documentation {
+    display: block;
+    float: left;
+    box-sizing: border-box;
+    width: 50%;
+}
+
+.detailedFiles {
+   display: block;
+   float: right;
+   box-sizing: border-box;
+   width: 48%;
+
+}

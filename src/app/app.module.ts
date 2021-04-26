@@ -32,6 +32,7 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { DropdownModule } from 'primeng/dropdown';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
+import { TreeModule } from 'primeng/tree';
 
 
 import { PanelMenuModule } from 'primeng/panelmenu';
@@ -59,6 +60,8 @@ import { DocumentationComponent } from './projekt-navi/project-documentation/doc
 import { ProjectScheduleComponent } from './projekt-navi/project-schedule/project-schedule.component';
 import { PersonalCalendarComponent } from './projekt-navi/personal-calendar/personal-calendar.component';
 import { MessageDetailComponent } from './projekt-navi/messages/one-message/message-detail/message-detail.component';
+import { AddFilesComponent } from './projekt-navi/project-documentation/add-files/add-files.component';
+import { ListFilesComponent } from './projekt-navi/project-documentation/documentation/list-files/list-files.component';
 
 
 
@@ -87,7 +90,9 @@ import { MessageDetailComponent } from './projekt-navi/messages/one-message/mess
     DocumentationComponent,
     ProjectScheduleComponent,
     PersonalCalendarComponent,
-    MessageDetailComponent
+    MessageDetailComponent,
+    AddFilesComponent,
+    ListFilesComponent
 
   ],
   imports: [
@@ -120,7 +125,8 @@ import { MessageDetailComponent } from './projekt-navi/messages/one-message/mess
     DropdownModule,
     MultiSelectModule,
     MatIconModule,
-    OverlayPanelModule
+    OverlayPanelModule,
+    TreeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
