@@ -1,6 +1,9 @@
 <div class="documentation">
-  <p-tree [value]="directories"></p-tree>
+  <p-contextMenu #filesmenu [model]="fileOptions" appendTo="body"></p-contextMenu>
+  <p-tree [value]="directories" selectionMode="multiple" [(selection)]="selectedFiles" [contextMenu]="filesmenu"></p-tree>
 </div>
+
+
 
 <div class="detailedFiles">
   <app-list-files></app-list-files>

@@ -33,6 +33,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { TreeModule } from 'primeng/tree';
+import { ContextMenuModule } from 'primeng/contextmenu';
 
 
 import { PanelMenuModule } from 'primeng/panelmenu';
@@ -126,7 +127,8 @@ import { ListFilesComponent } from './projekt-navi/project-documentation/documen
     MultiSelectModule,
     MatIconModule,
     OverlayPanelModule,
-    TreeModule
+    TreeModule,
+    ContextMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]

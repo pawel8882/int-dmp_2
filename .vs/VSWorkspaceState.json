@@ -3,14 +3,15 @@
     "",
     "\\src",
     "\\src\\app",
-    "\\src\\app\\data",
     "\\src\\app\\projekt-navi",
-    "\\src\\app\\projekt-navi\\messages",
+    "\\src\\app\\projekt-navi\\messages\\one-message",
+    "\\src\\app\\projekt-navi\\messages\\one-message\\message-detail",
+    "\\src\\app\\projekt-navi\\messages\\sent-messages",
     "\\src\\app\\projekt-navi\\project-documentation",
+    "\\src\\app\\projekt-navi\\project-documentation\\add-files",
     "\\src\\app\\projekt-navi\\project-documentation\\documentation",
-    "\\src\\app\\_class",
-    "\\src\\app\\_services"
+    "\\src\\app\\projekt-navi\\project-documentation\\documentation\\list-files"
   ],
-  "SelectedNode": "\\src\\app\\data\\treeDataDemo.ts",
+  "SelectedNode": "\\src\\app\\projekt-navi\\project-documentation\\add-files\\add-files.component.html",
   "PreviewInSolutionExplorer": false
 }

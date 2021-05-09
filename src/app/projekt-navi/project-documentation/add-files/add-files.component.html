@@ -1,7 +1,7 @@
 <div class="upload_files">
-  <span>Pliki do wczytania:</span>
   <p-fileUpload #fileUpload name="files[]" (onSelect)="onSelect($event)"
-                [multiple]="true" [maxFileSize]="1000000" chooseLabel="Dodaj pliki" uploadLabel="Wczytaj pliki" cancelLabel="Anuluj">
+                [multiple]="true" [maxFileSize]="1000000" chooseLabel="Dodaj pliki" uploadLabel="Wczytaj pliki" cancelLabel="Anuluj"
+                [customUpload]="true" (uploadHandler)="uploadFilesToServer($event)">
     <ng-template pTemplate="toolbar">
 
     </ng-template>
@@ -16,4 +16,10 @@
       </ul>
     </ng-template>
   </p-fileUpload>
+</div>
+
+<div class="fileStatus">
+  <ul>
+    <li *ngFor="let status of fileStatus" [ngStyle]="{'color' : getFileStatusColor(status.fileStatus)}">{{status.fileName}} - {{status.fileStatus}}</li>
+  </ul>
 </div>
